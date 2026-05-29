@@ -1695,6 +1695,137 @@ body:not(.loaded){overflow:hidden}
   border-radius: 8px;
 }
 
+
+/* ═══ PHOTO PREMIUM EFFECTS ═══ */
+
+/* ─── HERO PHOTO ─── */
+.hero-photo-frame {
+  width: 360px !important;
+  height: 500px !important;
+  border-radius: 24px !important;
+}
+.hero-photo-frame-inner img {
+  object-position: top center !important;
+  transform: scale(1.05);
+  transition: transform .6s ease;
+  filter: contrast(1.05) brightness(1.05) saturate(1.1);
+}
+.hero-photo-frame:hover .hero-photo-frame-inner img { transform: scale(1.08); }
+.hero-photo-area::after {
+  width: 320px !important; height: 320px !important;
+  background: radial-gradient(circle, rgba(212,175,55,.25), transparent 65%) !important;
+}
+.hero-photo-area::before {
+  background: radial-gradient(circle, rgba(212,175,55,.2), transparent 70%) !important;
+}
+
+/* ─── PORQUE PHOTO ─── */
+.pq-grid {
+  position: relative;
+}
+.pq-left {
+  position: relative;
+  z-index: 1;
+}
+.pq-asesora-wrap {
+  position: absolute;
+  bottom: -40px;
+  right: -60px;
+  width: 260px;
+  z-index: 10;
+  pointer-events: none;
+}
+.pq-asesora-wrap img {
+  width: 100%;
+  filter: 
+    drop-shadow(0 0 30px rgba(212,175,55,.3))
+    drop-shadow(0 20px 40px rgba(0,0,0,.5))
+    contrast(1.05) brightness(1.05);
+  mix-blend-mode: normal;
+}
+@media(max-width:960px){ .pq-asesora-wrap { display:none; } }
+
+/* ─── SERVICIOS PHOTO ─── */
+#servicios {
+  position: relative;
+}
+.servicios-asesora-wrap {
+  position: absolute;
+  right: -20px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 300px;
+  z-index: 5;
+  pointer-events: none;
+}
+.servicios-asesora-wrap img {
+  width: 100%;
+  filter:
+    drop-shadow(0 0 40px rgba(212,175,55,.25))
+    drop-shadow(-10px 20px 30px rgba(0,0,0,.6))
+    brightness(1.05) contrast(1.05);
+  animation: floatPhoto 4s ease-in-out infinite;
+}
+@keyframes floatPhoto {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+@media(max-width:1200px){ .servicios-asesora-wrap { display:none; } }
+
+/* ─── CTA FINAL PHOTO ─── */
+.cta-asesora {
+  position: absolute !important;
+  right: 3% !important;
+  bottom: 0 !important;
+  height: 95% !important;
+  max-height: 560px !important;
+  opacity: 1 !important;
+  filter: 
+    drop-shadow(0 0 50px rgba(212,175,55,.2))
+    drop-shadow(-20px 0 40px rgba(107,53,168,.3))
+    brightness(1.05) contrast(1.05) !important;
+  mix-blend-mode: normal !important;
+  object-fit: contain !important;
+  object-position: bottom !important;
+}
+#ctafinal .ctacontent {
+  position: relative;
+  z-index: 2;
+}
+#ctafinal .si {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ─── TESTIMONIOS PHOTO ─── */
+.testi-asesora {
+  position: absolute !important;
+  right: 0 !important;
+  left: auto !important;
+  bottom: 0 !important;
+  height: 100% !important;
+  max-height: 480px !important;
+  opacity: .9 !important;
+  filter:
+    drop-shadow(-20px 0 40px rgba(212,175,55,.2))
+    brightness(1.05) contrast(1.05) !important;
+  mix-blend-mode: normal !important;
+  object-fit: contain !important;
+  object-position: bottom !important;
+  z-index: 0 !important;
+}
+#testi .si {
+  position: relative;
+  z-index: 1;
+}
+
+/* ─── GENERAL PHOTO QUALITY ─── */
+img[src*="asesora"] {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+}
+
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
@@ -1886,7 +2017,7 @@ body:not(.loaded){overflow:hidden}
           <!-- Photo frame -->
           <div class="hero-photo-frame">
             <div class="hero-photo-frame-inner">
-              <img src="images/asesora-hero.png" alt="Asesora Bahia Solutions" style="width:100%;height:100%;object-fit:cover;object-position:top center;mix-blend-mode:lighten;">
+              <img src="images/asesora-hero.png" loading="eager" alt="Asesora Bahia Solutions" style="width:100%;height:100%;object-fit:cover;object-position:top center;mix-blend-mode:lighten;">
             </div>
           </div>
           <!-- Floating stats RIGHT -->
@@ -1929,6 +2060,9 @@ body:not(.loaded){overflow:hidden}
 
 <!-- SERVICIOS PRINCIPALES -->
 <section id="servicios">
+  <div class="servicios-asesora-wrap">
+    <img src="images/asesora-hero.png" alt="Asesora Servicios">
+  </div>
   <div class="si">
     <div class="serv-header rv">
       <div>
@@ -1985,7 +2119,7 @@ body:not(.loaded){overflow:hidden}
     <div class="pq-grid">
       <div class="pq-left rv-l">
         <div class="pq-big">
-          <img src="images/asesora-porque.png" alt="Asesora" class="pq-photo">
+          
           <div class="pq-quote-mark">"</div>
           <p class="pq-quote">Atención rápida, profesional y confiable. Transformamos tu idea en una empresa exitosa y sostenible.</p>
           <div class="pq-stats">
@@ -1994,6 +2128,9 @@ body:not(.loaded){overflow:hidden}
             <div class="pqs"><div class="pqs-n">100%</div><div class="pqs-l">Legal</div></div>
             <div class="pqs"><div class="pqs-n">24/7</div><div class="pqs-l">Soporte</div></div>
           </div>
+        </div>
+        <div class="pq-asesora-wrap">
+          <img src="images/asesora-porque.png" alt="Asesora Bahia Solutions">
         </div>
       </div>
       <div class="rv-r">
@@ -2272,7 +2409,7 @@ body:not(.loaded){overflow:hidden}
 <!-- CTA FINAL -->
 <section id="ctafinal">
   <div class="cta-glow"></div>
-  <img src="images/asesora-cta.png" alt="Asesora" class="cta-asesora">
+  <img src="images/asesora-cta.png" alt="Asesora Bahia" class="cta-asesora">
   <div class="si" style="padding-top:8rem;padding-bottom:8rem">
     <div class="ctacontent rv">
       <p class="cta-ey">¿Listo para empezar?</p>
