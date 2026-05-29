@@ -1609,7 +1609,94 @@ body:not(.loaded){overflow:hidden}
   margin-bottom: 2rem !important;
 }
 
+
+/* ─── SOCIAL ICONS ─── */
+.social-links {
+  display: flex;
+  gap: .8rem;
+  margin-top: 1.5rem;
+  align-items: center;
+}
+.social-btn {
+  width: 40px; height: 40px;
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem;
+  text-decoration: none;
+  transition: all .3s;
+  border: 1px solid rgba(212,175,55,.2);
+  background: rgba(212,175,55,.06);
+  color: var(--white70);
+}
+.social-btn:hover { transform: translateY(-3px); }
+.social-btn.fb:hover { background: #1877F2; border-color: #1877F2; color: #fff; box-shadow: 0 6px 20px rgba(24,119,242,.4); }
+.social-btn.ig:hover { background: linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); border-color: #e6683c; color: #fff; box-shadow: 0 6px 20px rgba(220,39,67,.4); }
+.social-btn.wa:hover { background: #25D366; border-color: #25D366; color: #fff; box-shadow: 0 6px 20px rgba(37,211,102,.4); }
+
+
+/* ─── PORQUE PHOTO ─── */
+.pq-photo {
+  position: absolute;
+  bottom: 0; right: -20px;
+  width: 280px;
+  opacity: .85;
+  filter: drop-shadow(0 0 30px rgba(212,175,55,.2));
+  pointer-events: none;
+  mix-blend-mode: lighten;
+}
+.pq-big { position: relative; overflow: visible !important; }
+
+
+/* ─── CTA PHOTO ─── */
+#ctafinal {
+  position: relative;
+  overflow: hidden;
+}
+.cta-asesora {
+  position: absolute;
+  right: 5%;
+  bottom: 0;
+  height: 90%;
+  max-height: 500px;
+  opacity: .7;
+  filter: drop-shadow(0 0 40px rgba(212,175,55,.15));
+  mix-blend-mode: lighten;
+  pointer-events: none;
+}
+@media(max-width:900px){ .cta-asesora { display: none; } }
+
+
+/* ─── TESTI PHOTO ─── */
+#testi {
+  position: relative;
+  overflow: hidden;
+}
+.testi-asesora {
+  position: absolute;
+  left: 2%;
+  bottom: 0;
+  height: 85%;
+  max-height: 420px;
+  opacity: .55;
+  filter: drop-shadow(0 0 30px rgba(200,168,233,.2));
+  mix-blend-mode: lighten;
+  pointer-events: none;
+}
+@media(max-width:900px){ .testi-asesora { display: none; } }
+
+
+/* ─── LOGO ─── */
+.nl-badge, .fl-ic {
+  overflow: hidden;
+}
+.nl-logo-img, .fl-logo-img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
 </style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
 
@@ -1799,11 +1886,7 @@ body:not(.loaded){overflow:hidden}
           <!-- Photo frame -->
           <div class="hero-photo-frame">
             <div class="hero-photo-frame-inner">
-              <!-- Reemplaza con: <img src="asesora.png" alt="Asesora Bahia"> -->
-              <div class="hero-photo-placeholder-new">
-                <div class="ph-icon">👩‍💼</div>
-                <div class="ph-text">Foto asesora<br>PNG aquí</div>
-              </div>
+              <img src="images/asesora-hero.png" alt="Asesora Bahia Solutions" style="width:100%;height:100%;object-fit:cover;object-position:top center;mix-blend-mode:lighten;">
             </div>
           </div>
           <!-- Floating stats RIGHT -->
@@ -1902,6 +1985,7 @@ body:not(.loaded){overflow:hidden}
     <div class="pq-grid">
       <div class="pq-left rv-l">
         <div class="pq-big">
+          <img src="images/asesora-porque.png" alt="Asesora" class="pq-photo">
           <div class="pq-quote-mark">"</div>
           <p class="pq-quote">Atención rápida, profesional y confiable. Transformamos tu idea en una empresa exitosa y sostenible.</p>
           <div class="pq-stats">
@@ -2158,6 +2242,7 @@ body:not(.loaded){overflow:hidden}
 
 <!-- TESTIMONIOS -->
 <section id="testi">
+  <img src="images/asesora-testimonios.png" alt="Asesora" class="testi-asesora">
   <div class="si">
     <div class="testi-header rv">
       <p class="sec-label" style="justify-content:center">Testimonios</p>
@@ -2187,6 +2272,7 @@ body:not(.loaded){overflow:hidden}
 <!-- CTA FINAL -->
 <section id="ctafinal">
   <div class="cta-glow"></div>
+  <img src="images/asesora-cta.png" alt="Asesora" class="cta-asesora">
   <div class="si" style="padding-top:8rem;padding-bottom:8rem">
     <div class="ctacontent rv">
       <p class="cta-ey">¿Listo para empezar?</p>
@@ -2252,9 +2338,16 @@ body:not(.loaded){overflow:hidden}
           <div class="fl-txt"><strong>BAHIA</strong><small>SOLUTIONS CENTER</small></div>
         </div>
         <p>Mismo compromiso, nuevas soluciones. Tu aliado estratégico para la creación y gestión de empresas en Estados Unidos. Antes: Bahía Travel and Business Services.</p>
-        <div class="foot-social">
-          <a href="https://www.facebook.com/BahiaTravelandbusiness/" target="_blank" class="sb" aria-label="Facebook"><span class="ni ni-sm"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></span></a>
-          <a href="https://wa.link/qsej2p" target="_blank" class="sb" aria-label="WhatsApp"><span class="ni ni-sm"><svg viewBox="0 0 24 24"><path d="M3 21l1.65-3.8a9 9 0 111.79 1.9L3 21"/><path d="M9 10c0 .55.45 1 1 1h4a1 1 0 001-1V9a1 1 0 00-1-1h-1V7a1 1 0 00-2 0v1H10a1 1 0 00-1 1v1z"/></svg></span></a>
+        <div class="social-links">
+          <a href="https://www.facebook.com/BahiaTravelandbusiness/" target="_blank" class="social-btn fb" aria-label="Facebook">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="https://www.instagram.com/bahiasolutionscenterllc/" target="_blank" class="social-btn ig" aria-label="Instagram">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="https://wa.link/qsej2p" target="_blank" class="social-btn wa" aria-label="WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+          </a>
         </div>
       </div>
       <div class="foot-col">
