@@ -1,0 +1,2505 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bahia Solutions Center</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+:root{
+  --lila:#C8A8E9;
+  --lila-mid:#9B6DD0;
+  --lila-deep:#6B35A8;
+  --purple-bg:#1E0A3C;
+  --purple-section:#160828;
+  --purple-card:rgba(107,53,168,0.18);
+  --gold:#D4AF37;
+  --gold-light:#F0D060;
+  --gold-dark:#A07820;
+  --white:#FFFFFF;
+  --white70:rgba(255,255,255,0.70);
+  --white30:rgba(255,255,255,0.30);
+  --white10:rgba(255,255,255,0.08);
+}
+body{
+  font-family:'Montserrat',sans-serif;
+  background:#0E0520;
+  color:var(--white);
+  overflow-x:hidden;
+}
+::-webkit-scrollbar{width:3px}
+::-webkit-scrollbar-track{background:#0E0520}
+::-webkit-scrollbar-thumb{background:var(--gold);border-radius:2px}
+
+/* ─── PROGRESS ─── */
+#prog{
+  position:fixed;top:0;left:0;height:2px;
+  background:linear-gradient(90deg,var(--lila-deep),var(--gold),var(--gold-light));
+  width:0%;z-index:9999;transition:width .08s linear;
+}
+
+/* ─── NAV ─── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1.4rem 3rem;
+  transition:all .5s ease;
+}
+nav.stuck{
+  background:rgba(14,5,32,0.92);
+  backdrop-filter:blur(24px);
+  border-bottom:1px solid rgba(200,168,233,0.15);
+  padding:0.9rem 3rem;
+}
+.nl{display:flex;align-items:center;gap:0.7rem;text-decoration:none}
+.nl-badge{
+  width:42px;height:42px;
+  background:linear-gradient(135deg,var(--gold-dark),var(--gold),var(--gold-light));
+  border-radius:8px;display:flex;align-items:center;justify-content:center;
+  font-weight:900;font-size:1rem;color:#0E0520;letter-spacing:-1px;
+}
+.nl-txt{display:flex;flex-direction:column;line-height:1.1}
+.nl-txt b{font-size:.95rem;font-weight:900;letter-spacing:3px}
+.nl-txt small{font-size:.48rem;letter-spacing:5px;color:var(--gold);font-weight:600}
+.nav-links{display:flex;align-items:center;gap:2.5rem;list-style:none}
+.nav-links a{
+  text-decoration:none;color:var(--white70);
+  font-size:.7rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;
+  transition:color .3s;position:relative;
+}
+.nav-links a:after{
+  content:'';position:absolute;bottom:-4px;left:0;
+  width:0;height:1px;background:var(--gold);transition:width .3s;
+}
+.nav-links a:hover{color:var(--gold)}
+.nav-links a:hover:after{width:100%}
+.nav-wa{
+  background:linear-gradient(135deg,var(--gold-dark),var(--gold));
+  color:#0E0520!important;padding:.55rem 1.4rem;border-radius:4px;
+  font-weight:800!important;letter-spacing:1.5px!important;
+  box-shadow:0 4px 20px rgba(212,175,55,.35);
+  transition:all .3s!important;
+}
+.nav-wa:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(212,175,55,.55)!important}
+.nav-wa:after{display:none!important}
+.hmbg{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
+.hmbg span{width:22px;height:2px;background:var(--white);border-radius:2px;transition:all .3s}
+
+/* ─── HERO ─── */
+#hero{
+  min-height:100vh;display:flex;align-items:center;
+  position:relative;overflow:hidden;padding:8rem 3rem 5rem;
+}
+.hero-canvas{position:absolute;inset:0;z-index:0}
+.hero-content{
+  position:relative;z-index:2;max-width:1200px;margin:0 auto;width:100%;
+  display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;
+}
+
+/* 3D floating orbs */
+.orb{
+  position:absolute;border-radius:50%;filter:blur(60px);
+  animation:orbFloat 8s ease-in-out infinite;pointer-events:none;
+}
+.orb1{width:500px;height:500px;background:radial-gradient(circle,rgba(107,53,168,.5),transparent);
+  top:-100px;right:0;animation-delay:0s}
+.orb2{width:350px;height:350px;background:radial-gradient(circle,rgba(200,168,233,.15),transparent);
+  bottom:50px;left:5%;animation-delay:-3s}
+.orb3{width:200px;height:200px;background:radial-gradient(circle,rgba(212,175,55,.12),transparent);
+  top:30%;right:20%;animation-delay:-5s}
+@keyframes orbFloat{
+  0%,100%{transform:translateY(0) scale(1)}
+  33%{transform:translateY(-30px) scale(1.05)}
+  66%{transform:translateY(15px) scale(.97)}
+}
+
+/* Grid lines bg */
+.hero-grid-bg{
+  position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(200,168,233,.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(200,168,233,.04) 1px,transparent 1px);
+  background-size:80px 80px;
+  mask-image:radial-gradient(ellipse 80% 90% at 50% 40%,black,transparent);
+}
+
+.hero-tag{
+  display:inline-flex;align-items:center;gap:.6rem;
+  background:rgba(200,168,233,.12);border:1px solid rgba(200,168,233,.3);
+  padding:.4rem 1rem;border-radius:100px;
+  font-size:.6rem;font-weight:700;letter-spacing:3px;color:var(--lila);text-transform:uppercase;
+  margin-bottom:1.8rem;
+}
+.hero-tag::before{content:'';width:7px;height:7px;background:var(--lila);border-radius:50%;animation:blink 2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+
+.hero-h1{
+  font-size:clamp(2.8rem,5vw,5rem);
+  font-weight:900;line-height:1;
+  color:var(--white);
+  margin-bottom:.5rem;
+  letter-spacing:-2px;
+}
+.hero-h1 .gold-word{
+  color:var(--gold);
+  display:inline-block;
+  position:relative;
+}
+.hero-h1 .gold-word::after{
+  content:'';position:absolute;bottom:-4px;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--gold-dark),var(--gold-light));
+  border-radius:2px;
+}
+.hero-sub{
+  font-size:clamp(.85rem,1.5vw,1.05rem);
+  font-weight:700;letter-spacing:3px;text-transform:uppercase;
+  color:var(--lila);margin-bottom:1.2rem;
+}
+.hero-desc{
+  font-size:.88rem;color:var(--white70);line-height:1.9;
+  margin-bottom:2.2rem;max-width:440px;font-weight:300;
+}
+.hero-slogan{
+  font-size:.6rem;letter-spacing:5px;text-transform:uppercase;
+  color:var(--gold);margin-bottom:2.5rem;font-weight:600;
+}
+.ctas{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:3rem}
+.btn-g{
+  display:inline-flex;align-items:center;gap:.6rem;
+  background:linear-gradient(135deg,var(--gold-dark),var(--gold));
+  color:#0E0520;padding:.85rem 2rem;border-radius:4px;
+  font-weight:900;font-size:.72rem;letter-spacing:2px;text-transform:uppercase;
+  text-decoration:none;transition:all .3s;
+  box-shadow:0 4px 30px rgba(212,175,55,.4);border:none;cursor:pointer;
+}
+.btn-g:hover{transform:translateY(-2px);box-shadow:0 8px 40px rgba(212,175,55,.6)}
+.btn-o{
+  display:inline-flex;align-items:center;gap:.6rem;
+  background:transparent;color:var(--white);
+  padding:.85rem 2rem;border-radius:4px;
+  font-weight:700;font-size:.72rem;letter-spacing:2px;text-transform:uppercase;
+  text-decoration:none;transition:all .3s;
+  border:1px solid rgba(200,168,233,.4);
+}
+.btn-o:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-2px)}
+.stats{display:flex;gap:2rem;flex-wrap:wrap}
+.stat{display:flex;flex-direction:column}
+.stat-n{font-size:2rem;font-weight:900;color:var(--gold);line-height:1;letter-spacing:-1px}
+.stat-l{font-size:.55rem;letter-spacing:2px;text-transform:uppercase;color:var(--white70);font-weight:600;margin-top:2px}
+.stat-div{width:1px;background:rgba(255,255,255,.12);align-self:stretch}
+
+/* Hero right - 3D card */
+.hero-right{position:relative;perspective:1000px}
+.hero-3d-card{
+  background:linear-gradient(135deg,rgba(107,53,168,.4),rgba(30,10,60,.6));
+  border:1px solid rgba(200,168,233,.25);
+  border-radius:24px;padding:2.5rem;
+  backdrop-filter:blur(20px);
+  transform:rotateY(-8deg) rotateX(5deg);
+  transform-style:preserve-3d;
+  transition:transform .6s ease;
+  box-shadow:
+    0 30px 80px rgba(0,0,0,.5),
+    inset 0 1px 0 rgba(255,255,255,.1),
+    -20px 20px 60px rgba(107,53,168,.3);
+  position:relative;
+}
+.hero-3d-card:hover{transform:rotateY(0deg) rotateX(0deg)}
+.hero-3d-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(200,168,233,.5),rgba(212,175,55,.5),transparent);
+  border-radius:24px 24px 0 0;
+}
+.card-header{
+  display:flex;align-items:center;gap:1rem;
+  margin-bottom:2rem;padding-bottom:1.5rem;
+  border-bottom:1px solid rgba(200,168,233,.15);
+}
+.card-badge{
+  width:52px;height:52px;
+  background:linear-gradient(135deg,var(--gold-dark),var(--gold));
+  border-radius:12px;display:flex;align-items:center;justify-content:center;
+  font-weight:900;font-size:1.4rem;color:#0E0520;letter-spacing:-2px;
+}
+.card-brand strong{display:block;font-size:1.1rem;font-weight:900;letter-spacing:3px}
+.card-brand small{font-size:.48rem;letter-spacing:5px;color:var(--gold);font-weight:600}
+.card-services{display:flex;flex-direction:column;gap:.75rem;margin-bottom:2rem}
+.cs-item{
+  display:flex;align-items:center;gap:.8rem;
+  font-size:.75rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;
+  color:var(--white70);
+}
+.cs-dot{width:5px;height:5px;background:var(--gold);border-radius:50%;flex-shrink:0}
+.card-cta{
+  width:100%;background:linear-gradient(135deg,var(--gold-dark),var(--gold));
+  color:#0E0520;border:none;padding:.9rem;border-radius:8px;
+  font-weight:900;font-size:.75rem;letter-spacing:2px;text-transform:uppercase;
+  cursor:pointer;text-decoration:none;display:block;text-align:center;transition:all .3s;
+}
+.card-cta:hover{box-shadow:0 8px 30px rgba(212,175,55,.5);transform:translateY(-1px)}
+.floating-chip{
+  position:absolute;
+  background:rgba(14,5,32,.92);
+  border:1px solid rgba(212,175,55,.4);
+  border-radius:12px;padding:.7rem 1rem;
+  backdrop-filter:blur(12px);font-size:.68rem;font-weight:700;
+  white-space:nowrap;
+}
+.chip1{top:-16px;right:-16px;animation:chipFloat1 3s ease-in-out infinite}
+.chip2{bottom:-16px;left:-16px;animation:chipFloat2 4s ease-in-out infinite}
+@keyframes chipFloat1{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes chipFloat2{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
+.chip-big{font-size:.95rem;font-weight:900;color:var(--gold)}
+.chip-small{font-size:.55rem;color:var(--white70);letter-spacing:1px;margin-top:2px}
+
+/* ─── TICKER ─── */
+.ticker{background:linear-gradient(135deg,var(--gold-dark),var(--gold));padding:.75rem 0;overflow:hidden;display:flex}
+.ticker-t{display:flex;animation:tick 35s linear infinite;white-space:nowrap}
+.ti{display:inline-flex;align-items:center;gap:.8rem;padding:0 2rem;
+  font-size:.65rem;font-weight:900;letter-spacing:3px;text-transform:uppercase;color:#0E0520}
+.ti:after{content:'◆';font-size:.4rem;margin-left:.8rem}
+@keyframes tick{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* ─── SECTION BASE ─── */
+section{position:relative;overflow:hidden}
+.si{max-width:1200px;margin:0 auto;padding:7rem 3rem}
+.sec-label{
+  font-size:.6rem;letter-spacing:5px;text-transform:uppercase;
+  color:var(--gold);font-weight:700;margin-bottom:.8rem;
+  display:flex;align-items:center;gap:.8rem;
+}
+.sec-label::before{content:'';width:28px;height:1px;background:var(--gold)}
+.sec-title{
+  font-size:clamp(1.8rem,3.5vw,3rem);
+  font-weight:900;line-height:1.05;margin-bottom:1rem;
+  color:var(--white);letter-spacing:-1px;
+}
+.sec-title em{color:var(--gold);font-style:normal}
+.sec-desc{font-size:.85rem;color:var(--white70);line-height:1.9;max-width:500px;font-weight:300}
+.gold-line{width:48px;height:2px;background:linear-gradient(90deg,var(--gold-dark),var(--gold));
+  border-radius:2px;margin:1.2rem 0}
+
+/* ─── SERVICIOS PRINCIPALES ─── */
+#servicios{background:linear-gradient(180deg,#0E0520 0%,#130830 100%)}
+.serv-header{display:flex;justify-content:space-between;align-items:flex-end;
+  margin-bottom:4rem;gap:2rem;flex-wrap:wrap}
+.serv-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  border:1px solid rgba(212,175,55,.18);border-radius:24px;overflow:hidden;
+  background:linear-gradient(145deg,rgba(20,8,50,.7),rgba(30,10,60,.5));
+}
+
+/* 3D tilt cards — now open row layout */
+.sc{
+  padding:2.5rem 2rem;
+  transition:all .4s ease;
+  position:relative;overflow:hidden;
+  border-right:1px solid rgba(212,175,55,.15);
+  border-bottom:1px solid rgba(212,175,55,.15);
+  cursor:default;
+}
+.sc:nth-child(3n){border-right:none}
+.sc:nth-child(4),.sc:nth-child(5),.sc:nth-child(6){border-bottom:none}
+.sc:before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(212,175,55,.07),transparent 55%);
+  opacity:0;transition:opacity .4s;
+}
+.sc:after{display:none}
+.sc:hover{
+  background:rgba(107,53,168,.22);
+}
+.sc:hover:before{opacity:1}
+.sc-num{
+  font-size:3.5rem;font-weight:900;
+  color:rgba(200,168,233,.08);line-height:1;
+  margin-bottom:.8rem;letter-spacing:-2px;transition:color .4s;
+}
+.sc:hover .sc-num{color:rgba(212,175,55,.15)}
+.sc-icon{
+  margin-bottom:1.2rem;transition:transform .3s;
+}
+.sc-icon .ni svg{width:30px;height:30px}
+.sc:hover .sc-icon{transform:scale(1.1) rotate(-8deg)}
+.sc-title{font-size:.78rem;font-weight:900;letter-spacing:2px;text-transform:uppercase;
+  color:var(--white);margin-bottom:.9rem}
+.sc-desc{font-size:.78rem;color:var(--white70);line-height:1.8;font-weight:300}
+
+/* ─── POR QUÉ ─── */
+#porque{background:linear-gradient(180deg,#130830 0%,#0A0418 100%)}
+.pq-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.pq-left{}
+.pq-big{
+  background:linear-gradient(135deg,rgba(200,168,233,.08),rgba(107,53,168,.15));
+  border:1px solid rgba(200,168,233,.2);
+  border-radius:24px;padding:3rem;position:relative;overflow:hidden;
+}
+.pq-big::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:1.5px;
+  background:linear-gradient(90deg,transparent,var(--lila),var(--gold),transparent);
+}
+.pq-quote-mark{
+  font-size:6rem;line-height:1;color:rgba(212,175,55,.1);
+  font-weight:900;margin-bottom:.5rem;
+}
+.pq-quote{
+  font-size:1.1rem;font-weight:600;color:var(--white);
+  line-height:1.6;margin-bottom:2.5rem;
+}
+.pq-stats{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.pqs{
+  background:rgba(14,5,32,.6);border:1px solid rgba(200,168,233,.12);
+  border-radius:14px;padding:1.2rem;text-align:center;
+}
+.pqs-n{font-size:2.2rem;font-weight:900;color:var(--gold);line-height:1;letter-spacing:-1px}
+.pqs-l{font-size:.58rem;letter-spacing:2px;text-transform:uppercase;color:var(--white70);margin-top:4px;font-weight:600}
+
+.razones{display:flex;flex-direction:column;gap:1.2rem}
+.razon{
+  display:flex;gap:1.2rem;align-items:flex-start;
+  padding:1.2rem;border-radius:14px;border:1px solid transparent;
+  transition:all .3s;
+}
+.razon:hover{background:rgba(107,53,168,.2);border-color:rgba(200,168,233,.2)}
+.razon-i{
+  width:44px;height:44px;background:rgba(200,168,233,.1);
+  border:1px solid rgba(200,168,233,.25);border-radius:10px;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.razon h4{font-size:.78rem;font-weight:800;color:var(--white);letter-spacing:1px;
+  text-transform:uppercase;margin-bottom:.3rem}
+.razon p{font-size:.76rem;color:var(--white70);line-height:1.7;font-weight:300}
+
+/* ─── ADICIONALES ─── */
+#adicionales{background:linear-gradient(180deg,#0A0418 0%,#0E0520 100%)}
+.ad-header{text-align:center;margin-bottom:4rem}
+.ad-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+.ac{
+  background:rgba(107,53,168,.12);
+  border:1px solid rgba(200,168,233,.1);
+  border-radius:16px;padding:2rem 1.5rem;text-align:center;
+  transition:all .35s;position:relative;overflow:hidden;
+}
+.ac:hover{
+  background:rgba(107,53,168,.3);border-color:var(--gold);
+  transform:translateY(-5px) scale(1.02);
+  box-shadow:0 15px 40px rgba(107,53,168,.3);
+}
+.ac-ico{display:flex;justify-content:center;margin-bottom:1rem;}
+.ac-title{font-size:.72rem;font-weight:900;letter-spacing:2px;text-transform:uppercase;
+  color:var(--white);margin-bottom:.7rem}
+.ac-desc{font-size:.73rem;color:var(--white70);line-height:1.7;font-weight:300}
+
+/* ─── IDEAL ─── */
+#ideal{
+  border-top:1px solid rgba(200,168,233,.12);
+  border-bottom:1px solid rgba(200,168,233,.12);
+  background:linear-gradient(135deg,rgba(200,168,233,.05),rgba(107,53,168,.12));
+}
+.ideal-wrap{display:flex;align-items:center;gap:4rem;flex-wrap:wrap}
+.ideal-tags{display:flex;flex-wrap:wrap;gap:.7rem;flex:2;min-width:280px}
+.tag{
+  background:rgba(200,168,233,.1);border:1px solid rgba(200,168,233,.25);
+  border-radius:100px;padding:.5rem 1.2rem;
+  font-size:.68rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  color:var(--lila);transition:all .3s;white-space:nowrap;cursor:default;
+  display:inline-flex;align-items:center;gap:.5rem;
+}
+.tag:hover{background:var(--gold);border-color:var(--gold);color:#0E0520;transform:scale(1.06)}
+
+/* ─── PROCESO ─── */
+#proceso{background:linear-gradient(180deg,#0E0520 0%,#130830 100%)}
+.pro-header{text-align:center;margin-bottom:5rem}
+.pro-track{
+  display:flex;gap:0;position:relative;counter-reset:step;
+}
+.pro-track::before{
+  content:'';position:absolute;top:45px;left:10%;right:10%;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(212,175,55,.4) 20%,rgba(212,175,55,.4) 80%,transparent);
+}
+.pro-step{
+  flex:1;display:flex;flex-direction:column;align-items:center;text-align:center;padding:0 1rem;
+}
+.pro-num{
+  width:90px;height:90px;
+  background:linear-gradient(135deg,rgba(107,53,168,.5),rgba(30,10,60,.8));
+  border:2px solid rgba(200,168,233,.3);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.6rem;font-weight:900;color:var(--lila);
+  position:relative;z-index:2;margin-bottom:1.5rem;
+  transition:all .4s;box-shadow:0 0 0 0 rgba(212,175,55,0);
+}
+.pro-step:hover .pro-num{
+  background:linear-gradient(135deg,var(--gold-dark),var(--gold));
+  border-color:var(--gold);color:#0E0520;
+  box-shadow:0 0 30px rgba(212,175,55,.4);transform:scale(1.1);
+}
+.pro-ico{display:flex;justify-content:center;margin-bottom:.8rem}
+.pro-title{font-size:.72rem;font-weight:900;letter-spacing:2px;text-transform:uppercase;
+  color:var(--white);margin-bottom:.5rem}
+.pro-desc{font-size:.72rem;color:var(--white70);line-height:1.7;font-weight:300}
+
+/* ─── SUCURSALES ─── */
+#sucursales{background:linear-gradient(180deg,#130830 0%,#0A0418 100%)}
+.suc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
+.scard{
+  background:linear-gradient(145deg,rgba(107,53,168,.2),rgba(30,10,60,.5));
+  border:1px solid rgba(200,168,233,.15);
+  border-radius:20px;padding:2.5rem;transition:all .4s;position:relative;overflow:hidden;
+}
+.scard.principal{border-color:rgba(212,175,55,.35);
+  background:linear-gradient(145deg,rgba(212,175,55,.08),rgba(107,53,168,.25))}
+.scard:hover{transform:translateY(-5px);box-shadow:0 20px 50px rgba(0,0,0,.4)}
+.scard::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:1.5px;
+  background:linear-gradient(90deg,transparent,var(--lila),transparent);
+  opacity:0;transition:opacity .4s;
+}
+.scard.principal::before{
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:1;
+}
+.scard:hover::before{opacity:1}
+.scard-badge{
+  display:inline-block;padding:.25rem .8rem;border-radius:100px;
+  font-size:.58rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;
+  margin-bottom:1.2rem;
+}
+.sb-gold{background:linear-gradient(135deg,var(--gold-dark),var(--gold));color:#0E0520}
+.sb-lila{background:rgba(200,168,233,.15);color:var(--lila);border:1px solid rgba(200,168,233,.3)}
+.scard-name{font-size:1.6rem;font-weight:900;letter-spacing:-1px;color:var(--white);margin-bottom:.2rem}
+.scard-state{font-size:.6rem;letter-spacing:4px;text-transform:uppercase;color:var(--gold);
+  font-weight:700;margin-bottom:1.5rem}
+.scard-info{display:flex;flex-direction:column;gap:.6rem}
+.si-row{display:flex;align-items:center;gap:.8rem;font-size:.78rem;color:var(--white70);font-weight:400}
+.si-row a{color:var(--gold);text-decoration:none;font-weight:700}
+
+/* ─── TESTIMONIOS ─── */
+#testi{background:linear-gradient(180deg,#0A0418 0%,#0E0520 100%)}
+.testi-header{text-align:center;margin-bottom:4rem}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.tc{
+  background:linear-gradient(145deg,rgba(107,53,168,.18),rgba(30,10,60,.5));
+  border:1px solid rgba(200,168,233,.12);
+  border-radius:20px;padding:2rem;position:relative;transition:all .3s;
+}
+.tc:hover{border-color:rgba(200,168,233,.3);transform:translateY(-4px)}
+.tc-qm{position:absolute;top:1.5rem;right:2rem;
+  font-size:5rem;font-weight:900;color:rgba(200,168,233,.06);line-height:1}
+.tc-stars{color:var(--gold);font-size:.85rem;margin-bottom:1rem;letter-spacing:2px}
+.tc-text{font-size:.85rem;color:var(--white);line-height:1.8;margin-bottom:1.5rem;font-weight:400}
+.tc-author{display:flex;align-items:center;gap:.8rem}
+.tc-av{
+  width:38px;height:38px;border-radius:50%;
+  background:linear-gradient(135deg,var(--gold-dark),var(--gold));
+  display:flex;align-items:center;justify-content:center;
+  font-weight:900;font-size:.72rem;color:#0E0520;flex-shrink:0;
+}
+.tc-name{font-size:.78rem;font-weight:700;color:var(--white)}
+.tc-biz{font-size:.65rem;color:var(--gold);font-weight:600;letter-spacing:1px}
+
+/* ─── CTA FINAL ─── */
+#ctafinal{
+  background:linear-gradient(135deg,#0A0418,#1E0A3C);
+  text-align:center;
+}
+.cta-glow{
+  position:absolute;width:900px;height:500px;
+  background:radial-gradient(ellipse,rgba(200,168,233,.08),transparent 70%);
+  top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;
+}
+.ctacontent{position:relative;z-index:2}
+.cta-ey{font-size:.6rem;letter-spacing:5px;text-transform:uppercase;
+  color:var(--lila);font-weight:700;margin-bottom:1.5rem}
+.cta-title{
+  font-size:clamp(2.5rem,5vw,4.5rem);
+  font-weight:900;color:var(--white);margin-bottom:1.2rem;
+  line-height:1;letter-spacing:-2px;
+}
+.cta-title em{color:var(--gold);font-style:normal}
+.cta-sub{
+  font-size:.88rem;color:var(--white70);max-width:480px;
+  margin:0 auto 3rem;line-height:1.9;font-weight:300;
+}
+.cta-btns{display:flex;justify-content:center;gap:1rem;flex-wrap:wrap;margin-bottom:3rem}
+.btn-wa{
+  display:inline-flex;align-items:center;gap:.8rem;
+  background:#25D366;color:#fff;padding:1rem 2.5rem;border-radius:4px;
+  font-weight:900;font-size:.78rem;letter-spacing:2px;text-transform:uppercase;
+  text-decoration:none;transition:all .3s;box-shadow:0 4px 30px rgba(37,211,102,.3);
+}
+.btn-wa:hover{transform:translateY(-2px);box-shadow:0 8px 40px rgba(37,211,102,.5)}
+.trust{display:flex;justify-content:center;gap:2rem;flex-wrap:wrap}
+.tb{display:flex;align-items:center;gap:.5rem;font-size:.68rem;color:var(--white70);
+  font-weight:600;letter-spacing:1px;text-transform:uppercase}
+.tb-ic{
+  width:22px;height:22px;background:rgba(200,168,233,.1);
+  border:1px solid rgba(200,168,233,.25);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+}
+.tb-ic .ni{width:16px;height:16px}
+.tb-ic .ni svg{width:12px;height:12px}
+
+/* ─── FOOTER ─── */
+footer{
+  background:#060210;
+  border-top:1px solid rgba(200,168,233,.12);
+  padding:4.5rem 3rem 2.5rem;
+}
+.foot-inner{max-width:1200px;margin:0 auto}
+.foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1.5fr;gap:3rem;margin-bottom:3rem}
+.foot-brand p{font-size:.78rem;color:var(--white70);line-height:1.9;margin-top:1rem;font-weight:300}
+.foot-logo{display:flex;align-items:center;gap:.8rem}
+.fl-ic{width:46px;height:46px;background:linear-gradient(135deg,var(--gold-dark),var(--gold));
+  border-radius:8px;display:flex;align-items:center;justify-content:center;
+  font-weight:900;font-size:1.2rem;color:#0E0520;letter-spacing:-1px}
+.fl-txt strong{font-size:1rem;font-weight:900;letter-spacing:3px}
+.fl-txt small{font-size:.45rem;letter-spacing:5px;color:var(--gold);font-weight:600;display:block}
+.foot-col h4{font-size:.6rem;font-weight:900;letter-spacing:4px;text-transform:uppercase;
+  color:var(--gold);margin-bottom:1.2rem;padding-bottom:.8rem;
+  border-bottom:1px solid rgba(212,175,55,.2)}
+.flinks{list-style:none;display:flex;flex-direction:column;gap:.6rem}
+.flinks a{text-decoration:none;color:var(--white70);font-size:.78rem;font-weight:400;
+  transition:color .3s;display:flex;align-items:center;gap:.4rem}
+.flinks a:hover{color:var(--gold)}
+.fc-item{display:flex;align-items:flex-start;gap:.8rem;margin-bottom:.8rem}
+.fc-ico{flex-shrink:0;display:flex;align-items:center}
+.fc-txt{font-size:.78rem;color:var(--white70);font-weight:300;line-height:1.6}
+.fc-txt a{color:var(--gold);text-decoration:none;font-weight:700}
+.foot-social{display:flex;gap:.8rem;margin-top:1.5rem}
+.sb{
+  width:34px;height:34px;border-radius:8px;
+  background:rgba(200,168,233,.1);border:1px solid rgba(200,168,233,.2);
+  display:flex;align-items:center;justify-content:center;
+  font-size:.85rem;text-decoration:none;transition:all .3s;
+}
+.sb:hover{background:var(--gold);border-color:var(--gold);transform:translateY(-2px)}
+.foot-bot{
+  border-top:1px solid rgba(255,255,255,.05);padding-top:1.5rem;
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;
+}
+.foot-copy{font-size:.68rem;color:rgba(255,255,255,.25);font-weight:400}
+.foot-copy span{color:var(--gold)}
+.foot-slog{font-size:.58rem;letter-spacing:3px;text-transform:uppercase;
+  color:rgba(255,255,255,.2);font-weight:500}
+
+/* ─── WA FLOAT ─── */
+.wa-float{position:fixed;bottom:2rem;right:2rem;z-index:999;
+  display:flex;flex-direction:column;align-items:flex-end;gap:.5rem}
+.wa-bubble{
+  background:rgba(14,5,32,.92);border:1px solid rgba(212,175,55,.3);
+  border-radius:12px;padding:.6rem 1rem;font-size:.68rem;font-weight:700;
+  color:var(--white);backdrop-filter:blur(10px);white-space:nowrap;
+  animation:fadeRight .5s 2s both;
+}
+.wa-btn{
+  width:58px;height:58px;background:#25D366;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.5rem;text-decoration:none;
+  box-shadow:0 4px 30px rgba(37,211,102,.4);transition:all .3s;
+  animation:pulseWa 2.5s ease-in-out infinite;
+}
+.wa-btn:hover{transform:scale(1.12);box-shadow:0 8px 40px rgba(37,211,102,.6)}
+@keyframes pulseWa{
+  0%,100%{box-shadow:0 4px 30px rgba(37,211,102,.4)}
+  50%{box-shadow:0 4px 50px rgba(37,211,102,.7),0 0 0 12px rgba(37,211,102,.08)}
+}
+@keyframes fadeRight{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:translateX(0)}}
+
+/* ─── MOBILE MENU ─── */
+.mmenu{
+  display:none;position:fixed;inset:0;
+  background:rgba(10,4,24,.98);z-index:999;
+  flex-direction:column;align-items:center;justify-content:center;gap:2rem;
+  backdrop-filter:blur(20px);
+}
+.mmenu.open{display:flex}
+.mmenu a{text-decoration:none;color:var(--white);font-size:1.4rem;
+  font-weight:900;letter-spacing:3px;text-transform:uppercase;transition:color .3s}
+.mmenu a:hover{color:var(--gold)}
+.mm-close{position:absolute;top:2rem;right:2rem;background:none;border:none;
+  color:var(--white70);font-size:1.4rem;cursor:pointer}
+
+/* ─── REVEAL ─── */
+.rv{opacity:0;transform:translateY(32px);transition:opacity .8s ease,transform .8s ease}
+.rv.vis{opacity:1;transform:translateY(0)}
+.rv-l{opacity:0;transform:translateX(-32px);transition:opacity .8s ease,transform .8s ease}
+.rv-l.vis{opacity:1;transform:translateX(0)}
+.rv-r{opacity:0;transform:translateX(32px);transition:opacity .8s ease,transform .8s ease}
+.rv-r.vis{opacity:1;transform:translateX(0)}
+
+/* ─── PARALLAX ─── */
+.parallax-el{will-change:transform}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:960px){
+  .nav-links{display:none}
+  .hmbg{display:flex}
+  .hero-content{grid-template-columns:1fr;gap:3rem}
+  .hero-right{display:none}
+  .serv-grid{grid-template-columns:1fr 1fr}
+  .pq-grid{grid-template-columns:1fr;gap:3rem}
+  .ad-grid{grid-template-columns:1fr 1fr}
+  .pro-track{flex-direction:column;gap:2rem}
+  .pro-track::before{display:none}
+  .suc-grid{grid-template-columns:1fr}
+  .testi-grid{grid-template-columns:1fr}
+  .foot-grid{grid-template-columns:1fr 1fr;gap:2rem}
+  .foot-brand{grid-column:1/-1}
+  .si{padding:5rem 1.5rem}
+  nav,nav.stuck{padding:.9rem 1.5rem}
+}
+@media(max-width:600px){
+  .serv-grid,.ad-grid{grid-template-columns:1fr}
+  .foot-grid{grid-template-columns:1fr}
+  .hero-h1{font-size:2.5rem}
+  .stats{gap:1.2rem}
+  .stat-div{display:none}
+  .cta-btns{flex-direction:column;align-items:center}
+}
+
+/* ─── NEON GOLD ICONS ─── */
+.ni{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:48px;height:48px;flex-shrink:0;
+}
+.ni svg{width:28px;height:28px;filter:drop-shadow(0 0 6px rgba(212,175,55,.9)) drop-shadow(0 0 14px rgba(212,175,55,.5));transition:filter .3s}
+.ni-sm svg{width:22px;height:22px}
+.ni-lg svg{width:34px;height:34px}
+.ni:hover svg,.sc:hover .ni svg,.razon:hover .ni svg{filter:drop-shadow(0 0 10px rgba(212,175,55,1)) drop-shadow(0 0 24px rgba(212,175,55,.8)) drop-shadow(0 0 40px rgba(212,175,55,.4))}
+
+/* SVG stroke base */
+.ni svg path,.ni svg circle,.ni svg rect,.ni svg line,.ni svg polyline,.ni svg polygon{
+  stroke:var(--gold);stroke-width:1.8;fill:none;stroke-linecap:round;stroke-linejoin:round;
+}
+
+
+.wa-btn .ni{width:32px;height:32px}
+.wa-btn .ni svg{width:26px;height:26px;filter:drop-shadow(0 0 8px rgba(255,255,255,.9))}
+.wa-btn .ni svg path,.wa-btn .ni svg circle{stroke:#fff}
+
+/* ─── LOADER ─── */
+#loader{
+  position:fixed;inset:0;z-index:99999;
+  background:#060210;
+  display:flex;align-items:center;justify-content:center;
+  flex-direction:column;
+  transition:opacity .6s ease;
+}
+#loader.hide{opacity:0;pointer-events:none}
+#loader-particles{position:absolute;inset:0;pointer-events:none}
+.loader-content{position:relative;z-index:2;text-align:center;display:flex;flex-direction:column;align-items:center;gap:1.5rem}
+.loader-logo-wrap{position:relative;display:flex;align-items:center;justify-content:center;margin-bottom:.5rem}
+.loader-badge{
+  width:80px;height:80px;
+  background:linear-gradient(135deg,var(--gold-dark),var(--gold),var(--gold-light));
+  border-radius:16px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:2rem;font-weight:900;color:#060210;letter-spacing:-2px;
+  position:relative;z-index:2;
+  animation:badgePulse 2s ease-in-out infinite;
+  box-shadow:0 0 40px rgba(212,175,55,.5),0 0 80px rgba(212,175,55,.2);
+}
+@keyframes badgePulse{
+  0%,100%{box-shadow:0 0 40px rgba(212,175,55,.5),0 0 80px rgba(212,175,55,.2);transform:scale(1)}
+  50%{box-shadow:0 0 60px rgba(212,175,55,.8),0 0 120px rgba(212,175,55,.4);transform:scale(1.05)}
+}
+.loader-rings{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+.ring{
+  position:absolute;border-radius:50%;border:1px solid rgba(212,175,55,.3);
+  animation:ringExpand 2.5s ease-out infinite;
+}
+.r1{width:120px;height:120px;animation-delay:0s}
+.r2{width:170px;height:170px;animation-delay:.5s;border-color:rgba(212,175,55,.2)}
+.r3{width:220px;height:220px;animation-delay:1s;border-color:rgba(212,175,55,.1)}
+@keyframes ringExpand{
+  0%{transform:scale(.8);opacity:0}
+  50%{opacity:1}
+  100%{transform:scale(1.2);opacity:0}
+}
+.loader-brand{display:flex;flex-direction:column;align-items:center;gap:.3rem}
+.loader-name{
+  font-size:2.5rem;font-weight:900;letter-spacing:8px;color:var(--white);
+  min-height:3rem;
+}
+.loader-sub{font-size:.65rem;font-weight:700;letter-spacing:8px;color:var(--gold)}
+.loader-bar-wrap{
+  width:220px;height:2px;background:rgba(255,255,255,.08);
+  border-radius:2px;overflow:hidden;
+}
+.loader-bar{
+  height:100%;width:0%;
+  background:linear-gradient(90deg,var(--gold-dark),var(--gold),var(--gold-light));
+  border-radius:2px;transition:width .05s linear;
+}
+.loader-tagline{font-size:.58rem;letter-spacing:5px;text-transform:uppercase;color:rgba(255,255,255,.3);font-weight:600}
+.loader-curtain{
+  position:absolute;inset:0;
+  background:#060210;
+  transform:translateY(0);
+  transition:transform .8s cubic-bezier(.77,0,.175,1);
+  pointer-events:none;
+}
+#loader.curtain-up .loader-curtain{transform:translateY(-100%)}
+body.loaded{overflow:auto}
+body:not(.loaded){overflow:hidden}
+
+/* ─── CURSOR GLOW ─── */
+#cursor-glow{
+  position:fixed;width:300px;height:300px;
+  background:radial-gradient(circle,rgba(212,175,55,.07) 0%,transparent 70%);
+  border-radius:50%;pointer-events:none;z-index:0;
+  transform:translate(-50%,-50%);
+  transition:transform .18s ease;
+  will-change:transform;
+}
+@media(max-width:960px){#cursor-glow{display:none}}
+
+/* ─── SIMULADOR ─── */
+#simulador{background:linear-gradient(180deg,#0E0520 0%,#130830 100%)}
+.sim-header{text-align:center;margin-bottom:3.5rem}
+.sim-wrap{
+  max-width:760px;margin:0 auto;
+  background:linear-gradient(145deg,rgba(107,53,168,.2),rgba(20,8,50,.7));
+  border:1px solid rgba(212,175,55,.2);
+  border-radius:24px;overflow:hidden;
+  position:relative;
+}
+.sim-wrap::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+}
+.sim-step{display:none;padding:3rem;animation:fadeInUp .4s ease}
+.sim-step.active{display:block}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.sim-step-label{
+  font-size:.6rem;font-weight:700;letter-spacing:4px;text-transform:uppercase;
+  color:var(--gold);margin-bottom:.8rem;display:flex;align-items:center;gap:.6rem;
+}
+.sim-step-label::before{content:'';width:20px;height:1px;background:var(--gold)}
+.sim-q{font-size:1.4rem;font-weight:900;color:var(--white);margin-bottom:2rem;letter-spacing:-0.5px;line-height:1.2}
+.sim-options{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:.8rem}
+.sim-opt{
+  background:rgba(200,168,233,.08);border:1px solid rgba(200,168,233,.2);
+  border-radius:12px;padding:1.2rem 1rem;text-align:center;
+  cursor:pointer;transition:all .3s;
+}
+.sim-opt:hover,.sim-opt.selected{
+  background:rgba(212,175,55,.12);border-color:var(--gold);
+  transform:translateY(-2px);box-shadow:0 8px 24px rgba(212,175,55,.15);
+}
+.sim-opt .sim-opt-ico{
+  display:flex;justify-content:center;margin-bottom:.7rem;
+}
+.sim-opt .sim-opt-ico .ni svg{
+  filter:drop-shadow(0 0 6px rgba(212,175,55,.7)) drop-shadow(0 0 14px rgba(212,175,55,.4));
+}
+.sim-opt-label{font-size:.72rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--white)}
+/* progress */
+.sim-progress{
+  display:flex;gap:.5rem;justify-content:center;padding:1.5rem 3rem 0;
+}
+.sim-prog-dot{
+  width:8px;height:8px;border-radius:50%;
+  background:rgba(255,255,255,.15);transition:all .4s;
+}
+.sim-prog-dot.done{background:var(--gold);box-shadow:0 0 8px rgba(212,175,55,.6)}
+.sim-prog-dot.active{background:var(--gold-light);box-shadow:0 0 12px rgba(212,175,55,.8);transform:scale(1.3)}
+/* result */
+.sim-result{padding:3rem;text-align:center}
+.sim-result-badge{
+  display:inline-block;
+  background:linear-gradient(135deg,var(--gold-dark),var(--gold));
+  color:#060210;padding:.4rem 1.4rem;border-radius:100px;
+  font-size:.7rem;font-weight:900;letter-spacing:3px;text-transform:uppercase;
+  margin-bottom:1.5rem;
+}
+.sim-result-type{
+  font-size:3rem;font-weight:900;letter-spacing:-2px;color:var(--white);
+  margin-bottom:.5rem;
+}
+.sim-result-type em{color:var(--gold);font-style:normal}
+.sim-result-desc{font-size:.88rem;color:var(--white70);line-height:1.9;
+  max-width:500px;margin:0 auto 2rem;font-weight:300}
+.sim-result-points{
+  display:flex;flex-direction:column;gap:.6rem;
+  max-width:400px;margin:0 auto 2.5rem;text-align:left;
+}
+.sim-rp{display:flex;align-items:center;gap:.8rem;
+  font-size:.78rem;color:var(--white);font-weight:500}
+.sim-rp .ni svg{width:14px;height:14px;
+  filter:drop-shadow(0 0 4px rgba(212,175,55,.8))}
+.sim-restart{
+  background:transparent;border:1px solid rgba(200,168,233,.3);
+  color:var(--white70);padding:.5rem 1.2rem;border-radius:100px;
+  font-size:.65rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+  cursor:pointer;margin-top:1rem;transition:all .3s;
+}
+.sim-restart:hover{border-color:var(--gold);color:var(--gold)}
+
+/* ─── FORMS ─── */
+.form-wrap{
+  background:linear-gradient(145deg,rgba(107,53,168,.18),rgba(20,8,50,.6));
+  border:1px solid rgba(212,175,55,.2);
+  border-radius:20px;padding:2.5rem;position:relative;overflow:hidden;
+  margin-top:3rem;
+}
+.form-wrap::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+}
+.form-title{font-size:1rem;font-weight:900;letter-spacing:1px;text-transform:uppercase;
+  color:var(--white);margin-bottom:.4rem}
+.form-sub{font-size:.78rem;color:var(--white70);margin-bottom:1.8rem;font-weight:300}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.form-grid.single{grid-template-columns:1fr}
+.fg{display:flex;flex-direction:column;gap:.4rem}
+.fg label{font-size:.6rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold)}
+.fg input,.fg select,.fg textarea{
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(200,168,233,.2);
+  border-radius:8px;padding:.75rem 1rem;
+  color:var(--white);font-family:'Montserrat',sans-serif;
+  font-size:.82rem;font-weight:400;
+  transition:border-color .3s,box-shadow .3s;outline:none;
+}
+.fg input:focus,.fg select:focus,.fg textarea:focus{
+  border-color:var(--gold);
+  box-shadow:0 0 0 3px rgba(212,175,55,.12);
+}
+.fg select option{background:#1E0A3C;color:var(--white)}
+.fg textarea{resize:vertical;min-height:90px}
+.fg input::placeholder,.fg textarea::placeholder{color:rgba(255,255,255,.25)}
+.form-full{grid-column:1/-1}
+.btn-form{
+  width:100%;background:linear-gradient(135deg,var(--gold-dark),var(--gold));
+  color:#060210;border:none;padding:1rem;border-radius:8px;
+  font-family:'Montserrat',sans-serif;
+  font-weight:900;font-size:.78rem;letter-spacing:3px;text-transform:uppercase;
+  cursor:pointer;transition:all .3s;margin-top:.5rem;
+}
+.btn-form:hover{box-shadow:0 8px 30px rgba(212,175,55,.5);transform:translateY(-1px)}
+.form-success{
+  display:none;text-align:center;padding:2rem;
+}
+.form-success.show{display:block}
+.form-success h4{font-size:1.2rem;font-weight:900;color:var(--gold);margin-bottom:.5rem}
+.form-success p{font-size:.82rem;color:var(--white70);font-weight:300}
+
+/* mini wa btn per service */
+.btn-wa-sm{
+  display:inline-flex;align-items:center;gap:.6rem;
+  background:rgba(37,211,102,.1);border:1px solid rgba(37,211,102,.35);
+  color:#25D366;padding:.55rem 1.2rem;border-radius:6px;
+  font-size:.65rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;
+  text-decoration:none;transition:all .3s;margin-top:1.2rem;white-space:nowrap;
+}
+.btn-wa-sm:hover{background:#25D366;color:#fff;transform:translateY(-1px);
+  box-shadow:0 6px 20px rgba(37,211,102,.35)}
+.btn-wa-sm .ni{width:18px;height:18px}
+.btn-wa-sm .ni svg{width:14px;height:14px;
+  filter:drop-shadow(0 0 4px rgba(37,211,102,.8))}
+.btn-wa-sm .ni svg path{stroke:#25D366}
+.btn-wa-sm:hover .ni svg path{stroke:#fff}
+.btn-wa-sm:hover .ni svg{filter:drop-shadow(0 0 4px rgba(255,255,255,.8))}
+
+.sc-actions{display:flex;align-items:center;gap:.8rem;margin-top:1.2rem;flex-wrap:wrap}
+
+
+/* ─── GLOBAL MODAL ─── */
+#modal-overlay{
+  position:fixed;inset:0;z-index:9000;
+  background:rgba(6,2,16,.88);
+  backdrop-filter:blur(12px);
+  display:flex;align-items:center;justify-content:center;
+  padding:1.5rem;
+  opacity:0;pointer-events:none;
+  transition:opacity .35s ease;
+}
+#modal-overlay.open{opacity:1;pointer-events:all}
+.modal-box{
+  background:linear-gradient(145deg,rgba(30,10,60,.97),rgba(14,5,32,.99));
+  border:1px solid rgba(212,175,55,.25);
+  border-radius:24px;
+  width:100%;max-width:600px;
+  max-height:90vh;overflow-y:auto;
+  position:relative;
+  transform:translateY(24px) scale(.97);
+  transition:transform .4s cubic-bezier(.34,1.56,.64,1);
+  scrollbar-width:thin;scrollbar-color:rgba(212,175,55,.3) transparent;
+}
+#modal-overlay.open .modal-box{transform:translateY(0) scale(1)}
+.modal-box::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+  border-radius:24px 24px 0 0;
+}
+.modal-head{
+  display:flex;align-items:flex-start;justify-content:space-between;
+  padding:2rem 2rem 0;margin-bottom:1.5rem;
+}
+.modal-head-txt h3{
+  font-size:1.1rem;font-weight:900;letter-spacing:1px;text-transform:uppercase;color:var(--white);margin-bottom:.3rem;
+}
+.modal-head-txt p{font-size:.78rem;color:var(--white70);font-weight:300}
+.modal-close{
+  width:36px;height:36px;background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.1);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1rem;color:var(--white70);cursor:pointer;
+  transition:all .3s;flex-shrink:0;margin-left:1rem;
+}
+.modal-close:hover{background:rgba(212,175,55,.15);border-color:var(--gold);color:var(--gold)}
+.modal-body{padding:0 2rem 2rem}
+.modal-wa-alt{
+  display:flex;align-items:center;gap:.8rem;
+  background:rgba(37,211,102,.08);border:1px solid rgba(37,211,102,.2);
+  border-radius:12px;padding:1rem 1.2rem;margin-bottom:1.5rem;
+  font-size:.75rem;color:var(--white70);font-weight:400;
+}
+.modal-wa-alt a{color:#25D366;font-weight:700;text-decoration:none}
+.modal-or{
+  display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem;
+}
+.modal-or::before,.modal-or::after{content:'';flex:1;height:1px;background:rgba(255,255,255,.08)}
+.modal-or span{font-size:.6rem;letter-spacing:3px;text-transform:uppercase;color:var(--white30);white-space:nowrap}
+
+/* section CTA bar */
+.section-cta-bar{
+  display:flex;align-items:center;justify-content:center;
+  gap:1rem;flex-wrap:wrap;
+  margin-top:3rem;padding-top:2.5rem;
+  border-top:1px solid rgba(212,175,55,.12);
+}
+.btn-open-modal{
+  display:inline-flex;align-items:center;gap:.7rem;
+  background:linear-gradient(135deg,var(--gold-dark),var(--gold));
+  color:#060210;padding:.85rem 2rem;border-radius:6px;
+  font-weight:900;font-size:.72rem;letter-spacing:2px;text-transform:uppercase;
+  text-decoration:none;border:none;cursor:pointer;
+  transition:all .3s;box-shadow:0 4px 24px rgba(212,175,55,.3);
+}
+.btn-open-modal:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(212,175,55,.55)}
+.btn-open-modal .ni svg{width:16px;height:16px}
+.btn-wa-general{
+  display:inline-flex;align-items:center;gap:.7rem;
+  background:linear-gradient(135deg,#128C7E,#25D366);
+  color:#fff;padding:.85rem 2rem;border-radius:6px;
+  font-weight:900;font-size:.72rem;letter-spacing:2px;text-transform:uppercase;
+  text-decoration:none;transition:all .3s;
+  box-shadow:0 4px 20px rgba(37,211,102,.3);
+}
+.btn-wa-general:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(37,211,102,.55)}
+.btn-wa-general .ni svg{width:16px;height:16px;filter:drop-shadow(0 0 4px rgba(255,255,255,.6))}
+.btn-wa-general .ni svg path{stroke:#fff}
+
+
+/* ─── WA HERO BTN ─── */
+.btn-wa-hero{
+  display:inline-flex;align-items:center;gap:.8rem;
+  background:linear-gradient(135deg,#128C7E,#25D366);
+  color:#fff;padding:.85rem 2rem;border-radius:6px;
+  font-weight:900;font-size:.72rem;letter-spacing:2px;text-transform:uppercase;
+  text-decoration:none;transition:all .3s;
+  box-shadow:0 4px 24px rgba(37,211,102,.35);
+  border:none;
+}
+.btn-wa-hero:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(37,211,102,.6)}
+.btn-wa-hero-icon{
+  width:22px;height:22px;flex-shrink:0;display:flex;align-items:center;justify-content:center;
+}
+.btn-wa-hero-icon svg{width:18px;height:18px}
+.btn-wa-hero-icon svg path{stroke:#fff;stroke-width:1.8;fill:none;stroke-linecap:round;stroke-linejoin:round}
+
+
+/* ─── HERO PHOTO ─── */
+.hero-photo-wrap{
+  position:relative;display:flex;align-items:flex-end;justify-content:center;
+  min-height:480px;
+}
+.hero-photo-placeholder{
+  width:320px;height:480px;
+  border:2px dashed rgba(212,175,55,.3);
+  border-radius:20px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:1rem;
+  background:linear-gradient(180deg,rgba(107,53,168,.15),rgba(212,175,55,.05));
+  position:relative;overflow:hidden;
+}
+.hero-photo-placeholder::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 50% 100%,rgba(212,175,55,.1),transparent 70%);
+}
+.hero-photo-placeholder-icon{
+  font-size:3rem;opacity:.4;
+}
+.hero-photo-placeholder-text{
+  font-size:.65rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;
+  color:rgba(212,175,55,.5);text-align:center;
+}
+.hero-photo-img{
+  width:100%;height:100%;object-fit:cover;object-position:top center;
+  border-radius:20px;
+}
+/* glow base under photo */
+.hero-photo-wrap::after{
+  content:'';position:absolute;bottom:-20px;left:50%;transform:translateX(-50%);
+  width:200px;height:40px;
+  background:radial-gradient(ellipse,rgba(212,175,55,.3),transparent 70%);
+  border-radius:50%;filter:blur(10px);
+}
+
+
+/* ─── SIMULADOR BADGE ─── */
+.sim-interactive-badge{
+  display:inline-flex;align-items:center;gap:.6rem;
+  background:linear-gradient(135deg,rgba(212,175,55,.15),rgba(212,175,55,.08));
+  border:1px solid rgba(212,175,55,.4);
+  border-radius:100px;padding:.5rem 1.2rem;
+  font-size:.62rem;font-weight:800;letter-spacing:3px;text-transform:uppercase;
+  color:var(--gold);margin-bottom:1.5rem;
+  animation:simPulse 2s ease-in-out infinite;
+}
+.sim-interactive-badge::before{
+  content:'';width:8px;height:8px;background:var(--gold);border-radius:50%;
+  animation:blink 1.5s ease-in-out infinite;
+  box-shadow:0 0 8px rgba(212,175,55,.8);
+}
+@keyframes simPulse{
+  0%,100%{box-shadow:0 0 0 0 rgba(212,175,55,.0)}
+  50%{box-shadow:0 0 0 6px rgba(212,175,55,.1)}
+}
+.sim-interactive-hint{
+  font-size:.72rem;color:var(--white70);margin-top:.5rem;font-weight:300;
+  display:flex;align-items:center;gap:.5rem;justify-content:center;
+}
+.sim-arrow-anim{
+  display:inline-block;animation:arrowBounce .8s ease-in-out infinite;
+  font-size:.9rem;
+}
+@keyframes arrowBounce{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(4px)}
+}
+
+
+/* ─── WA FINAL BTN ─── */
+.btn-wa-final{
+  display:inline-flex;align-items:center;gap:.8rem;
+  background:linear-gradient(135deg,#128C7E,#25D366);
+  color:#fff;padding:1rem 2.5rem;border-radius:6px;
+  font-weight:900;font-size:.78rem;letter-spacing:2px;text-transform:uppercase;
+  text-decoration:none;transition:all .3s;
+  box-shadow:0 4px 30px rgba(37,211,102,.4);
+}
+.btn-wa-final:hover{transform:translateY(-2px);box-shadow:0 8px 40px rgba(37,211,102,.6)}
+.btn-wa-final-icon{width:24px;height:24px;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.btn-wa-final-icon svg{width:20px;height:20px}
+.btn-wa-final-icon svg path{stroke:#fff;stroke-width:1.8;fill:none;stroke-linecap:round;stroke-linejoin:round}
+/* remove old btn-wa */
+.btn-wa{display:none}
+
+
+/* ─── MAGIC BUTTONS ─── */
+@keyframes borderRotate {
+  0%   { --angle: 0deg; }
+  100% { --angle: 360deg; }
+}
+@property --angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.btn-magic-gold {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .7rem;
+  padding: 1rem 2.2rem;
+  border-radius: 10px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  font-size: .75rem;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--white);
+  background: linear-gradient(135deg, rgba(20,8,50,.95), rgba(40,15,80,.95));
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  z-index: 0;
+  transition: transform .3s, box-shadow .3s;
+  overflow: hidden;
+}
+.btn-magic-gold::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 12px;
+  background: conic-gradient(from var(--angle), transparent 60%, var(--gold-light), var(--gold), var(--gold-dark), transparent 80%);
+  animation: borderRotate 2.5s linear infinite;
+  z-index: -1;
+}
+.btn-magic-gold::after {
+  content: '';
+  position: absolute;
+  inset: 2px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, rgba(20,8,50,.97), rgba(35,12,65,.97));
+  z-index: -1;
+}
+.btn-magic-gold:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 30px rgba(212,175,55,.5), 0 0 60px rgba(212,175,55,.2);
+}
+.btn-magic-gold .bm-inner {
+  position: relative; z-index: 1;
+  display: flex; align-items: center; gap: .7rem;
+}
+.btn-magic-gold .bm-inner .ni svg { width: 16px; height: 16px; }
+
+.btn-magic-wa {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .7rem;
+  padding: 1rem 2.2rem;
+  border-radius: 10px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  font-size: .75rem;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--white);
+  background: linear-gradient(135deg, rgba(10,30,20,.95), rgba(15,40,25,.95));
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  z-index: 0;
+  transition: transform .3s, box-shadow .3s;
+  overflow: hidden;
+}
+.btn-magic-wa::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 12px;
+  background: conic-gradient(from var(--angle), transparent 60%, #5fffaa, #25D366, #128C7E, transparent 80%);
+  animation: borderRotate 2.5s linear infinite;
+  z-index: -1;
+}
+.btn-magic-wa::after {
+  content: '';
+  position: absolute;
+  inset: 2px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, rgba(10,30,20,.97), rgba(12,35,22,.97));
+  z-index: -1;
+}
+.btn-magic-wa:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 30px rgba(37,211,102,.5), 0 0 60px rgba(37,211,102,.2);
+}
+.btn-magic-wa .bm-inner {
+  position: relative; z-index: 1;
+  display: flex; align-items: center; gap: .7rem;
+}
+.btn-magic-wa .bm-inner .ni svg path { stroke: #25D366; }
+.btn-magic-wa .bm-inner .ni svg { width: 16px; height: 16px; }
+
+/* Section CTA bar — tight to grid */
+.section-cta-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(212,175,55,.12);
+}
+
+/* ─── HERO RIGHT REDESIGN ─── */
+.hero-right-new {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+}
+.hero-photo-area {
+  position: relative;
+  width: 340px;
+  height: 440px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+/* glow ring behind photo */
+.hero-photo-area::before {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 280px; height: 280px;
+  background: radial-gradient(circle, rgba(212,175,55,.18), transparent 70%);
+  border-radius: 50%;
+  filter: blur(20px);
+  animation: glow-pulse 3s ease-in-out infinite;
+}
+.hero-photo-frame {
+  width: 300px; height: 420px;
+  border-radius: 20px;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(180deg, rgba(107,53,168,.2), rgba(212,175,55,.05));
+  border: 1px solid rgba(212,175,55,.2);
+  display: flex; align-items: flex-end; justify-content: center;
+}
+.hero-photo-frame::before {
+  content: '';
+  position: absolute; inset: -2px;
+  border-radius: 22px;
+  background: conic-gradient(from var(--angle), transparent 70%, rgba(212,175,55,.6), transparent 85%);
+  animation: borderRotate 4s linear infinite;
+  z-index: 0;
+}
+.hero-photo-frame-inner {
+  position: absolute; inset: 2px;
+  border-radius: 18px;
+  background: linear-gradient(180deg, rgba(30,10,60,.6) 0%, rgba(14,5,32,.8) 100%);
+  overflow: hidden;
+  display: flex; align-items: flex-end; justify-content: center;
+  z-index: 1;
+}
+.hero-photo-frame-inner img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: top center;
+}
+.hero-photo-placeholder-new {
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: .8rem; padding: 2rem;
+  width: 100%; height: 100%;
+}
+.hero-photo-placeholder-new .ph-icon {
+  font-size: 3.5rem; opacity: .3;
+}
+.hero-photo-placeholder-new .ph-text {
+  font-size: .6rem; font-weight: 700;
+  letter-spacing: 3px; text-transform: uppercase;
+  color: rgba(212,175,55,.4); text-align: center;
+  line-height: 1.6;
+}
+/* Floating stats around photo */
+.hero-float-stats {
+  position: absolute;
+  display: flex; flex-direction: column; gap: 1rem;
+}
+.hero-float-stats.left { left: -20px; top: 50%; transform: translateY(-50%); }
+.hero-float-stats.right { right: -20px; top: 50%; transform: translateY(-60%); }
+.hfs-card {
+  background: rgba(14,5,32,.92);
+  border: 1px solid rgba(212,175,55,.3);
+  border-radius: 12px;
+  padding: .8rem 1.1rem;
+  backdrop-filter: blur(12px);
+  white-space: nowrap;
+  animation: chipFloat1 3s ease-in-out infinite;
+}
+.hfs-card:nth-child(2) { animation: chipFloat2 3.5s ease-in-out infinite; }
+.hfs-num {
+  font-size: 1.4rem; font-weight: 900;
+  color: var(--gold); line-height: 1;
+  letter-spacing: -1px;
+}
+.hfs-label {
+  font-size: .55rem; font-weight: 700;
+  letter-spacing: 2px; text-transform: uppercase;
+  color: var(--white70); margin-top: 2px;
+}
+/* Bottom badge */
+.hero-bottom-badge {
+  display: flex; align-items: center; gap: .7rem;
+  background: rgba(14,5,32,.92);
+  border: 1px solid rgba(37,211,102,.3);
+  border-radius: 100px;
+  padding: .5rem 1.2rem;
+  font-size: .65rem; font-weight: 700;
+  letter-spacing: 2px; text-transform: uppercase;
+  color: #25D366;
+  animation: chipFloat1 4s ease-in-out infinite;
+}
+.hero-bottom-badge::before {
+  content: ''; width: 7px; height: 7px;
+  background: #25D366; border-radius: 50%;
+  animation: blink 1.5s infinite;
+  box-shadow: 0 0 8px rgba(37,211,102,.8);
+}
+
+
+/* ─── TIGHT CTA BAR ─── */
+.hero-ctas-stack {
+  display: flex;
+  flex-direction: column;
+  gap: .8rem;
+  width: 100%;
+  max-width: 460px;
+}
+.btn-hero-full {
+  width: 100%;
+  justify-content: center;
+}
+.btn-wa-gold .bm-inner .ni svg path { stroke: var(--gold-light) !important; }
+.section-cta-bar {
+  margin-top: 1rem !important;
+  padding-top: 1.2rem !important;
+  border-top: 1px solid rgba(212,175,55,.1) !important;
+}
+/* Section padding bottom tighter */
+#servicios .si,
+#adicionales .si {
+  padding-bottom: 3rem !important;
+}
+
+/* ─── SIMULADOR TITLE BIG ─── */
+.sim-big-title {
+  font-size: clamp(4rem, 10vw, 8rem);
+  font-weight: 900;
+  letter-spacing: -4px;
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 2px rgba(212,175,55,.3);
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: .5rem;
+  position: relative;
+  user-select: none;
+}
+.sim-big-title span {
+  background: linear-gradient(135deg, rgba(212,175,55,.15), rgba(212,175,55,.4), rgba(212,175,55,.15));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  -webkit-text-stroke: 0;
+}
+
+/* ─── EXTRA MODERN FX ─── */
+/* Animated gradient bg on hover for service cards */
+.sc::before {
+  transition: opacity .4s;
+}
+/* Section dividers — animated gold line */
+.section-gold-divider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(212,175,55,.4), transparent);
+  position: relative;
+  overflow: hidden;
+}
+.section-gold-divider::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(212,175,55,.9), transparent);
+  animation: shimmer 3s ease-in-out infinite;
+}
+@keyframes shimmer {
+  0% { left: -100%; }
+  100% { left: 200%; }
+}
+/* Floating glow spots on sections */
+#servicios::before {
+  content: '';
+  position: absolute;
+  top: -100px; right: -100px;
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(107,53,168,.12), transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+#adicionales::after {
+  content: '';
+  position: absolute;
+  bottom: -100px; left: -100px;
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(212,175,55,.06), transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+/* Stat cards shimmer on hover */
+.pqs {
+  transition: all .3s;
+  position: relative;
+  overflow: hidden;
+}
+.pqs::after {
+  content: '';
+  position: absolute;
+  top: -50%; left: -60%;
+  width: 40%; height: 200%;
+  background: linear-gradient(105deg, transparent, rgba(255,255,255,.06), transparent);
+  transform: skewX(-15deg);
+  transition: left .5s;
+}
+.pqs:hover::after { left: 130%; }
+.pqs:hover {
+  border-color: rgba(212,175,55,.3);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0,0,0,.3);
+}
+/* Ticker speed up on hover */
+.ticker:hover .ticker-t { animation-play-state: paused; }
+/* AC card modernized */
+.ac {
+  position: relative;
+}
+.ac::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  opacity: 0;
+  transition: opacity .4s;
+  border-radius: 0 0 16px 16px;
+}
+.ac:hover::after { opacity: 1; }
+/* Process step connector line pulse */
+.pro-num {
+  position: relative;
+}
+.pro-num::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 1px solid rgba(212,175,55,.2);
+  animation: ringExpand 3s ease-out infinite;
+}
+/* Testimonial glow */
+.tc::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  border-radius: 20px;
+  background: radial-gradient(circle at 30% 30%, rgba(212,175,55,.04), transparent 60%);
+  pointer-events: none;
+}
+
+</style>
+</head>
+<body>
+
+
+<!-- ═══ INTRO LOADER ═══ -->
+<div id="loader">
+  <canvas id="loader-particles"></canvas>
+  <div class="loader-content">
+    <div class="loader-logo-wrap">
+      <div class="loader-badge" id="loaderBadge">BS</div>
+      <div class="loader-rings">
+        <div class="ring r1"></div>
+        <div class="ring r2"></div>
+        <div class="ring r3"></div>
+      </div>
+    </div>
+    <div class="loader-brand">
+      <span class="loader-name" id="loaderName"></span>
+      <span class="loader-sub">SOLUTIONS CENTER</span>
+    </div>
+    <div class="loader-bar-wrap">
+      <div class="loader-bar" id="loaderBar"></div>
+    </div>
+    <p class="loader-tagline">MISMO COMPROMISO · NUEVAS SOLUCIONES</p>
+  </div>
+  <div class="loader-curtain" id="loaderCurtain"></div>
+</div>
+
+<!-- ═══ CURSOR GLOW ═══ -->
+<div id="cursor-glow"></div>
+
+
+<!-- ═══ GLOBAL MODAL ═══ -->
+<div id="modal-overlay" onclick="if(event.target===this)closeModal()">
+  <div class="modal-box">
+    <div class="modal-head">
+      <div class="modal-head-txt">
+        <h3>Solicita tu asesoría personalizada</h3>
+        <p>Un asesor de Bahia Solutions te contactará hoy mismo.</p>
+      </div>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-wa-alt">
+        <span class="ni" style="flex-shrink:0"><svg viewBox="0 0 24 24" style="width:18px;height:18px"><path d="M3 21l1.65-3.8a9 9 0 111.79 1.9L3 21"/></svg></span>
+        ¿Prefieres escribir directo? &nbsp;<a href="https://wa.link/qsej2p" target="_blank">WhatsApp ahora →</a>
+      </div>
+      <div class="modal-or"><span>o completa el formulario</span></div>
+      <form class="bahia-form" action="https://formspree.io/f/FORM_ID_AQUI" method="POST">
+        <input type="hidden" name="_subject" value="Nueva solicitud de asesoría — Bahia Solutions">
+        <div class="form-grid">
+          <div class="fg"><label>Nombre completo</label>
+            <input type="text" name="nombre" placeholder="Tu nombre completo" required>
+          </div>
+          <div class="fg"><label>WhatsApp</label>
+            <input type="tel" name="whatsapp" placeholder="+1 (203) 000-0000" required>
+          </div>
+          <div class="fg"><label>Email</label>
+            <input type="email" name="email" placeholder="tu@email.com">
+          </div>
+          <div class="fg"><label>Estado USA</label>
+            <select name="estado">
+              <option value="">Selecciona tu estado...</option>
+              <option>Connecticut</option><option>New York</option><option>Massachusetts</option>
+              <option>Florida</option><option>Texas</option><option>California</option><option>Otro estado</option>
+            </select>
+          </div>
+          <div class="fg form-full"><label>¿Sobre qué servicio quieres información?</label>
+            <select name="servicio" id="modal-servicio" required>
+              <option value="">Selecciona el servicio...</option>
+              <optgroup label="Creación de Empresas">
+                <option>Crear una LLC</option>
+                <option>Crear una Corporation</option>
+                <option>Registro rápido y seguro</option>
+                <option>EIN / Tax ID</option>
+                <option>Asesoría personalizada paso a paso</option>
+                <option>Cambios de dirección y mantenimiento</option>
+              </optgroup>
+              <optgroup label="Servicios Complementarios">
+                <option>Taxes Personales y de Negocios</option>
+                <option>Contabilidad y Bookkeeping</option>
+                <option>Notary Public</option>
+                <option>Traducciones y Documentos</option>
+                <option>Servicios de Negocios</option>
+                <option>Soporte Emprendedor</option>
+              </optgroup>
+              <option value="No sé aún, necesito orientación">No sé aún — necesito orientación</option>
+            </select>
+          </div>
+          <div class="fg form-full"><label>Mensaje (opcional)</label>
+            <textarea name="mensaje" placeholder="Cuéntanos sobre tu proyecto o situación actual..."></textarea>
+          </div>
+        </div>
+        <button type="submit" class="btn-form">SOLICITAR ASESORÍA PERSONALIZADA →</button>
+      </form>
+      <div class="form-success"><h4>¡Solicitud enviada! 🎉</h4>
+        <p>Recibimos tu mensaje en <strong>bahiatravel2787@hotmail.com</strong><br>Un asesor te contactará a la brevedad.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="prog"></div>
+
+<!-- WA FLOAT -->
+<div class="wa-float">
+  <div class="wa-bubble">¡Escríbenos ahora!</div>
+  <a href="https://wa.link/qsej2p" target="_blank" class="wa-btn" aria-label="WhatsApp"><span class="ni"><svg viewBox="0 0 24 24"><path d="M3 21l1.65-3.8a9 9 0 111.79 1.9L3 21"/><path d="M9 10c0 .55.45 1 1 1h4a1 1 0 001-1V9a1 1 0 00-1-1h-1V7a1 1 0 00-2 0v1H10a1 1 0 00-1 1v1z"/></svg></span></a>
+</div>
+
+<!-- MOBILE MENU -->
+<div class="mmenu" id="mmenu">
+  <button class="mm-close" onclick="cMM()">✕</button>
+  <a href="#servicios" onclick="cMM()">Servicios</a>
+  <a href="#porque" onclick="cMM()">Nosotros</a>
+  <a href="#proceso" onclick="cMM()">Proceso</a>
+  <a href="#sucursales" onclick="cMM()">Oficinas</a>
+  <a href="#simulador" onclick="cMM()">Simulador</a>
+  <a href="#contacto" onclick="cMM()">Contacto</a>
+  <a href="https://wa.link/qsej2p" target="_blank" style="color:var(--gold)!important">WhatsApp</a>
+</div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nl">
+    <div class="nl-badge">BS</div>
+    <div class="nl-txt"><b>BAHIA</b><small>SOLUTIONS CENTER</small></div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#adicionales">Serv. Complementarios</a></li><li><a href="#porque">Nosotros</a></li>
+    <li><a href="#proceso">Proceso</a></li>
+    <li><a href="#sucursales">Oficinas</a></li>
+    <li><a href="#simulador">Simulador</a></li><li><a href="#contacto">Contacto</a></li><li><a href="https://wa.link/qsej2p" target="_blank" class="nav-wa">WhatsApp</a></li>
+  </ul>
+  <button class="hmbg" onclick="oMM()" aria-label="Menú">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-canvas">
+    <div class="orb orb1"></div>
+    <div class="orb orb2"></div>
+    <div class="orb orb3"></div>
+    <div class="hero-grid-bg"></div>
+    <!-- Animated particles -->
+    <canvas id="particles" style="position:absolute;inset:0;pointer-events:none;opacity:.4"></canvas>
+  </div>
+  <div class="hero-content">
+    <div class="hero-left rv-l">
+      <div class="hero-tag">Connecticut · New York · Massachusetts</div>
+      <h1 class="hero-h1">HACEMOS<br><span class="gold-word">REALIDAD</span><br>TU EMPRESA</h1>
+      <p class="hero-sub">Creación de compañías en todos los estados</p>
+      <p class="hero-desc">LLC, Corporation, EIN/Tax ID y mucho más. Asesoría personalizada paso a paso para emprendedores que quieren crecer con total seguridad legal.</p>
+      <p class="hero-slogan">Mismo compromiso · Nuevas soluciones</p>
+      <div class="ctas hero-ctas-stack">
+        <button onclick="openModal()" class="btn-magic-gold btn-hero-full">
+          <span class="bm-inner"><span class="ni" style="width:20px;height:20px"><svg viewBox="0 0 24 24" style="width:16px;height:16px"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></span> SOLICITA UNA REUNIÓN CON UN ASESOR</span>
+        </button>
+        <a href="https://wa.link/qsej2p" target="_blank" class="btn-magic-gold btn-hero-full btn-wa-gold">
+          <span class="bm-inner"><span class="ni" style="width:20px;height:20px"><svg viewBox="0 0 24 24" style="width:16px;height:16px"><path d="M3 21l1.65-3.8a9 9 0 111.79 1.9L3 21"/><path d="M9 10a1 1 0 001 1h4a1 1 0 001-1V9a1 1 0 00-1-1h-1V7a1 1 0 00-2 0v1H10a1 1 0 00-1 1v1z"/></svg></span> WHATSAPP</span>
+        </a>
+      </div>
+      <div class="stats">
+        <div class="stat"><span class="stat-n">50+</span><span class="stat-l">Estados USA</span></div>
+        <div class="stat-div"></div>
+        <div class="stat"><span class="stat-n">3</span><span class="stat-l">Oficinas</span></div>
+        <div class="stat-div"></div>
+        <div class="stat"><span class="stat-n">100%</span><span class="stat-l">Legal & Seguro</span></div>
+      </div>
+    </div>
+        <div class="hero-right rv-r">
+      <div class="hero-right-new">
+        <div class="hero-photo-area">
+          <!-- Floating stats LEFT -->
+          <div class="hero-float-stats left">
+            <div class="hfs-card">
+              <div class="hfs-num">50+</div>
+              <div class="hfs-label">Estados USA</div>
+            </div>
+            <div class="hfs-card">
+              <div class="hfs-num">3</div>
+              <div class="hfs-label">Oficinas</div>
+            </div>
+          </div>
+          <!-- Photo frame -->
+          <div class="hero-photo-frame">
+            <div class="hero-photo-frame-inner">
+              <!-- Reemplaza con: <img src="asesora.png" alt="Asesora Bahia"> -->
+              <div class="hero-photo-placeholder-new">
+                <div class="ph-icon">👩‍💼</div>
+                <div class="ph-text">Foto asesora<br>PNG aquí</div>
+              </div>
+            </div>
+          </div>
+          <!-- Floating stats RIGHT -->
+          <div class="hero-float-stats right">
+            <div class="hfs-card">
+              <div class="hfs-num">LLC</div>
+              <div class="hfs-label">Corp · EIN</div>
+            </div>
+            <div class="hfs-card">
+              <div class="hfs-num">100%</div>
+              <div class="hfs-label">Legal</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+        <div class="floating-chip chip2">
+          <div class="chip-big">📍 CT · NY · MA</div>
+          <div class="chip-small">3 oficinas disponibles</div>
+        </div>
+<label>Estado USA</label></section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-t">
+    <span class="ti">LLC Registration</span><span class="ti">Corporation</span>
+    <span class="ti">EIN / Tax ID</span><span class="ti">Taxes Personales</span>
+    <span class="ti">Bookkeeping</span><span class="ti">Notary Public</span>
+    <span class="ti">Traducciones</span><span class="ti">Business Services</span>
+    <span class="ti">Connecticut</span><span class="ti">White Plains NY</span>
+    <span class="ti">Massachusetts</span>
+    <span class="ti">LLC Registration</span><span class="ti">Corporation</span>
+    <span class="ti">EIN / Tax ID</span><span class="ti">Taxes Personales</span>
+    <span class="ti">Bookkeeping</span><span class="ti">Notary Public</span>
+    <span class="ti">Traducciones</span><span class="ti">Business Services</span>
+    <span class="ti">Connecticut</span><span class="ti">White Plains NY</span>
+    <span class="ti">Massachusetts</span>
+  </div>
+</div>
+
+<!-- SERVICIOS PRINCIPALES -->
+<section id="servicios">
+  <div class="si">
+    <div class="serv-header rv">
+      <div>
+        <p class="sec-label">Servicios Principales</p>
+        <h2 class="sec-title">Creación de <em>Compañías</em></h2>
+        <div class="gold-line"></div>
+        <p class="sec-desc">Registramos tu empresa en todos los estados de USA. Rápido, legal, sin complicaciones.</p>
+      </div>
+
+    </div>
+    <div class="serv-grid" id="servGrid">
+      <div class="sc rv" style="transition-delay:.05s">
+        <div class="sc-num">01</div><div class="sc-icon"><span class="ni"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></span></div>
+        <h3 class="sc-title">LLC</h3>
+        <p class="sc-desc">Estructura legal ideal para proteger tu patrimonio personal de los riesgos del negocio. La más popular para emprendedores por su flexibilidad fiscal.</p>
+      </div>
+      <div class="sc rv" style="transition-delay:.1s">
+        <div class="sc-num">02</div><div class="sc-icon"><span class="ni"><svg viewBox="0 0 24 24"><path d="M3 21h18M3 10h18M5 10V6l7-3 7 3v4M9 21v-5h6v5"/></svg></span></div>
+        <h3 class="sc-title">Corporation</h3>
+        <p class="sc-desc">Para empresas con planes de crecimiento a gran escala, inversionistas o emisión de acciones. Estructura corporativa sólida y formal.</p>
+      </div>
+      <div class="sc rv" style="transition-delay:.15s">
+        <div class="sc-num">03</div><div class="sc-icon"><span class="ni"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></span></div>
+        <h3 class="sc-title">Registro Rápido</h3>
+        <p class="sc-desc">Nos encargamos de todo el papeleo ante el estado. Proceso ágil y transparente para que tu empresa quede constituida en tiempo récord.</p>
+      </div>
+      <div class="sc rv" style="transition-delay:.2s">
+        <div class="sc-num">04</div><div class="sc-icon"><span class="ni"><svg viewBox="0 0 24 24"><circle cx="8" cy="15" r="5"/><path d="M21 3l-9.2 9.2M15 9l2 2"/></svg></span></div>
+        <h3 class="sc-title">EIN / Tax ID</h3>
+        <p class="sc-desc">Tramitamos tu EIN ante el IRS. Indispensable para abrir cuentas bancarias, contratar empleados y declarar impuestos legalmente.</p>
+      </div>
+      <div class="sc rv" style="transition-delay:.25s">
+        <div class="sc-num">05</div><div class="sc-icon"><span class="ni"><svg viewBox="0 0 24 24"><path d="M20 7h-7L9 4H4a2 2 0 00-2 2v10a2 2 0 002 2h5l3 3 3-3h5a2 2 0 002-2V9a2 2 0 00-2-2z"/></svg></span></div>
+        <h3 class="sc-title">Asesoría Paso a Paso</h3>
+        <p class="sc-desc">No estás solo. Te guiamos de principio a fin, analizando tu proyecto para ayudarte a tomar las mejores decisiones desde el primer día.</p>
+      </div>
+      <div class="sc rv" style="transition-delay:.3s">
+        <div class="sc-num">06</div><div class="sc-icon"><span class="ni"><svg viewBox="0 0 24 24"><path d="M23 4v6h-6"/><path d="M1 20v-6h6"/><path d="M3.51 9a9 9 0 0114.36-3.36L23 10M1 14l5.13 4.36A9 9 0 0020.49 15"/></svg></span></div>
+        <h3 class="sc-title">Mantenimiento</h3>
+        <p class="sc-desc">Cambios de dirección, actualización de agentes y reportes anuales. Mantenemos tu empresa al día con las normativas para evitar multas.</p>
+      </div>
+    </div>
+  </div>
+    <div class="section-cta-bar rv">
+      <button onclick="openModal()" class="btn-magic-gold"><span class="bm-inner"><span class="ni" style="width:20px;height:20px"><svg viewBox="0 0 24 24" style="width:16px;height:16px"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></span> SOLICITAR ASESORÍA PERSONALIZADA</span></button>
+      <a href="https://wa.link/qsej2p" target="_blank" class="btn-magic-wa"><span class="bm-inner"><span class="ni" style="width:20px;height:20px"><svg viewBox="0 0 24 24" style="width:16px;height:16px"><path d="M3 21l1.65-3.8a9 9 0 111.79 1.9L3 21"/><path d="M9 10a1 1 0 001 1h4a1 1 0 001-1V9a1 1 0 00-1-1h-1V7a1 1 0 00-2 0v1H10a1 1 0 00-1 1v1z"/></svg></span> WHATSAPP</span></a>
+    </div>
+</section>
+<div class="section-gold-divider"></div>
+
+<!-- POR QUÉ ELEGIRNOS -->
+<section id="porque">
+  <div class="si">
+    <div class="pq-grid">
+      <div class="pq-left rv-l">
+        <div class="pq-big">
+          <div class="pq-quote-mark">"</div>
+          <p class="pq-quote">Atención rápida, profesional y confiable. Transformamos tu idea en una empresa exitosa y sostenible.</p>
+          <div class="pq-stats">
+            <div class="pqs"><div class="pqs-n">50+</div><div class="pqs-l">Estados</div></div>
+            <div class="pqs"><div class="pqs-n">3</div><div class="pqs-l">Oficinas</div></div>
+            <div class="pqs"><div class="pqs-n">100%</div><div class="pqs-l">Legal</div></div>
+            <div class="pqs"><div class="pqs-n">24/7</div><div class="pqs-l">Soporte</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="rv-r">
+        <p class="sec-label">¿Por qué Elegirnos?</p>
+        <h2 class="sec-title">Tu éxito es<br><em>nuestra misión</em></h2>
+        <div class="gold-line"></div>
+        <div class="razones">
+          <div class="razon"><div class="razon-i"><span class="ni ni-sm"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9z"/></svg></span></div><div><h4>Rapidez garantizada</h4><p>Procesos ágiles sin burocracia innecesaria. Tu empresa lista en el menor tiempo posible.</p></div></div>
+          <div class="razon"><div class="razon-i"><span class="ni ni-sm"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span></div><div><h4>Seguridad legal total</h4><p>Cumplimiento riguroso con normativas estatales y federales. Sin errores, sin multas, sin sorpresas.</p></div></div>
+          <div class="razon"><div class="razon-i"><span class="ni ni-sm"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></span></div><div><h4>Asesoría personalizada</h4><p>Cada cliente es único. Soluciones a la medida de tu negocio desde el día uno.</p></div></div>
+          <div class="razon"><div class="razon-i"><span class="ni ni-sm"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></span></div><div><h4>Presencia en 3 estados</h4><p>Oficinas en Connecticut, White Plains NY y Massachusetts. Siempre cerca de ti.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICIOS ADICIONALES -->
+<section id="adicionales">
+  <div class="si">
+    <div class="ad-header rv">
+      <p class="sec-label" style="justify-content:center">Servicios Complementarios</p>
+      <h2 class="sec-title" style="text-align:center">Todo lo que <em>tu negocio</em> necesita</h2>
+      <div class="gold-line" style="margin:1.2rem auto"></div>
+      <p class="sec-desc" style="text-align:center;margin:0 auto">Un portafolio integral para apoyar la gestión y el crecimiento de tu empresa.</p>
+    </div>
+    <div class="ad-grid">
+      <div class="ac rv" style="transition-delay:.05s"><span class="ac-ico"><span class="ni ni-lg"><svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span></span><h3 class="ac-title">Taxes Personales y de Negocios</h3><p class="ac-desc">Declaraciones optimizadas, máximos reembolsos, cumplimiento con el IRS.</p></div>
+      <div class="ac rv" style="transition-delay:.1s"><span class="ac-ico"><span class="ni ni-lg"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg></span></span><h3 class="ac-title">Contabilidad y Bookkeeping</h3><p class="ac-desc">Control financiero diario, conciliaciones bancarias y estados financieros.</p></div>
+      <div class="ac rv" style="transition-delay:.15s"><span class="ac-ico"><span class="ni ni-lg"><svg viewBox="0 0 24 24"><path d="M9 17H5a2 2 0 00-2 2v2h18v-2a2 2 0 00-2-2h-4"/><rect x="9" y="7" width="6" height="10"/><path d="M9 7a3 3 0 016 0"/></svg></span></span><h3 class="ac-title">Notary Public</h3><p class="ac-desc">Notarización oficial de contratos, poderes notariales y declaraciones juradas.</p></div>
+      <div class="ac rv" style="transition-delay:.2s"><span class="ac-ico"><span class="ni ni-lg"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg></span></span><h3 class="ac-title">Traducciones y Documentos</h3><p class="ac-desc">Documentos legales, académicos y comerciales con validez oficial.</p></div>
+      <div class="ac rv" style="transition-delay:.25s"><span class="ac-ico"><span class="ni ni-lg"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/><line x1="12" y1="12" x2="12" y2="12"/></svg></span></span><h3 class="ac-title">Servicios de Negocios</h3><p class="ac-desc">Licencias comerciales, trámites administrativos y asesoría continua.</p></div>
+      <div class="ac rv" style="transition-delay:.3s"><span class="ac-ico"><span class="ni ni-lg"><svg viewBox="0 0 24 24"><path d="M12 2s7 3 7 10-7 10-7 10S5 19 5 12 12 2 12 2z"/><circle cx="12" cy="12" r="2"/><path d="M12 22v-4M12 2V6M8 20l2-3M16 20l-2-3"/></svg></span></span><h3 class="ac-title">Soporte Emprendedor</h3><p class="ac-desc">Acompañamiento integral para quienes dan sus primeros pasos en los negocios.</p></div>
+    </div>
+  </div>
+    <div class="section-cta-bar rv">
+      <button onclick="openModal()" class="btn-magic-gold"><span class="bm-inner"><span class="ni" style="width:20px;height:20px"><svg viewBox="0 0 24 24" style="width:16px;height:16px"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></span> SOLICITAR ASESORÍA PERSONALIZADA</span></button>
+      <a href="https://wa.link/qsej2p" target="_blank" class="btn-magic-wa"><span class="bm-inner"><span class="ni" style="width:20px;height:20px"><svg viewBox="0 0 24 24" style="width:16px;height:16px"><path d="M3 21l1.65-3.8a9 9 0 111.79 1.9L3 21"/><path d="M9 10a1 1 0 001 1h4a1 1 0 001-1V9a1 1 0 00-1-1h-1V7a1 1 0 00-2 0v1H10a1 1 0 00-1 1v1z"/></svg></span> WHATSAPP</span></a>
+    </div>
+</section>
+<div class="section-gold-divider"></div>
+
+<!-- IDEAL PARA -->
+<section id="ideal">
+  <div class="si" style="padding:4rem 3rem">
+    <div class="ideal-wrap rv">
+      <div style="flex:1;min-width:260px">
+        <p class="sec-label">Ideal Para</p>
+        <h2 class="sec-title" style="font-size:1.9rem">Tu industria,<br><em>nuestra experiencia</em></h2>
+        <div class="gold-line"></div>
+        <p class="sec-desc" style="font-size:.8rem">Trabajamos con emprendedores y empresas de todos los sectores.</p>
+      </div>
+      <div class="ideal-tags">
+        <span class="tag"><span class="ni ni-sm"><svg viewBox="0 0 24 24"><path d="M2 20h20M4 20V10M8 20V4M12 20v-8M16 20V8M20 20V12"/></svg></span> Construcción</span>
+        <span class="tag"><span class="ni ni-sm"><svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13"/><path d="M16 8h4l3 5v4h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></span> Trucking</span>
+        <span class="tag"><span class="ni ni-sm"><svg viewBox="0 0 24 24"><path d="M3 22l6-6M3 22h6v-6"/><path d="M15 2l-9 14h8l-2 4 9-14h-8l2-4z"/></svg></span> Cleaning Services</span>
+        <span class="tag"><span class="ni ni-sm"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span> Roofing</span>
+        <span class="tag"><span class="ni ni-sm"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span> Real Estate</span>
+        <span class="tag"><span class="ni ni-sm"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M1 21h22"/></svg></span> Negocios Online</span>
+        <span class="tag"><span class="ni ni-sm"><svg viewBox="0 0 24 24"><path d="M12 22V12"/><path d="M12 12C12 12 8 8 4 8s-2 6 4 8c3 1 4 2 4 2z"/><path d="M12 12c0 0 4-4 8-4s2 6-4 8c-3 1-4 2-4 2z"/></svg></span> Emprendedores</span>
+        <span class="tag"><span class="ni ni-sm"><svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></span> Pequeños Negocios</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ SIMULADOR ═══ -->
+<section id="simulador">
+  <div class="si">
+    <div class="sim-header rv">
+      <div class="sim-big-title"><span>SIMULADOR</span></div>
+      <h2 class="sec-title" style="text-align:center">¿Qué empresa es <em>ideal para ti?</em></h2>
+      <div class="gold-line" style="margin:1.2rem auto"></div>
+      <p class="sec-desc" style="text-align:center;margin:0 auto">Responde 3 preguntas y te decimos qué estructura legal es perfecta para tu negocio.</p>
+      <p class="sim-interactive-hint"><span class="sim-arrow-anim">↓</span> Toca una opción para comenzar</p>
+    </div>
+    <div class="sim-wrap rv">
+      <div class="sim-progress">
+        <div class="sim-prog-dot active" id="pd1"></div>
+        <div class="sim-prog-dot" id="pd2"></div>
+        <div class="sim-prog-dot" id="pd3"></div>
+      </div>
+      <!-- PASO 1 -->
+      <div class="sim-step active" id="s1">
+        <p class="sim-step-label">Paso 1 de 3</p>
+        <h3 class="sim-q">¿En qué industria está tu negocio?</h3>
+        <div class="sim-options">
+          <div class="sim-opt" onclick="simSelect(1,'construccion')">
+            <div class="sim-opt-ico"><span class="ni"><svg viewBox="0 0 24 24"><path d="M2 20h20M4 20V10M8 20V4M12 20v-8M16 20V8M20 20V12"/></svg></span></div>
+            <div class="sim-opt-label">Construcción</div>
+          </div>
+          <div class="sim-opt" onclick="simSelect(1,'trucking')">
+            <div class="sim-opt-ico"><span class="ni"><svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13"/><path d="M16 8h4l3 5v4h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></span></div>
+            <div class="sim-opt-label">Trucking</div>
+          </div>
+          <div class="sim-opt" onclick="simSelect(1,'cleaning')">
+            <div class="sim-opt-ico"><span class="ni"><svg viewBox="0 0 24 24"><path d="M3 22l6-6M3 22h6v-6"/><path d="M15 2l-9 14h8l-2 4 9-14h-8l2-4z"/></svg></span></div>
+            <div class="sim-opt-label">Cleaning</div>
+          </div>
+          <div class="sim-opt" onclick="simSelect(1,'realestate')">
+            <div class="sim-opt-ico"><span class="ni"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span></div>
+            <div class="sim-opt-label">Real Estate</div>
+          </div>
+          <div class="sim-opt" onclick="simSelect(1,'online')">
+            <div class="sim-opt-ico"><span class="ni"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M1 21h22"/></svg></span></div>
+            <div class="sim-opt-label">Online</div>
+          </div>
+          <div class="sim-opt" onclick="simSelect(1,'otro')">
+            <div class="sim-opt-ico"><span class="ni"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg></span></div>
+            <div class="sim-opt-label">Otro</div>
+          </div>
+        </div>
+      </div>
+      <!-- PASO 2 -->
+      <div class="sim-step" id="s2">
+        <p class="sim-step-label">Paso 2 de 3</p>
+        <h3 class="sim-q">¿Cuántos socios tendrá tu empresa?</h3>
+        <div class="sim-options" style="grid-template-columns:repeat(3,1fr)">
+          <div class="sim-opt" onclick="simSelect(2,'solo')">
+            <div class="sim-opt-ico"><span class="ni"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span></div>
+            <div class="sim-opt-label">Solo yo</div>
+          </div>
+          <div class="sim-opt" onclick="simSelect(2,'pocos')">
+            <div class="sim-opt-ico"><span class="ni"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></span></div>
+            <div class="sim-opt-label">2–3 socios</div>
+          </div>
+          <div class="sim-opt" onclick="simSelect(2,'varios')">
+            <div class="sim-opt-ico"><span class="ni"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><line x1="9" y1="22" x2="15" y2="22"/><line x1="12" y1="7" x2="12" y2="22"/></svg></span></div>
+            <div class="sim-opt-label">4 o más</div>
+          </div>
+        </div>
+      </div>
+      <!-- PASO 3 -->
+      <div class="sim-step" id="s3">
+        <p class="sim-step-label">Paso 3 de 3</p>
+        <h3 class="sim-q">¿Cuál es tu prioridad principal?</h3>
+        <div class="sim-options" style="grid-template-columns:repeat(3,1fr)">
+          <div class="sim-opt" onclick="simSelect(3,'proteger')">
+            <div class="sim-opt-ico"><span class="ni"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span></div>
+            <div class="sim-opt-label">Proteger mi patrimonio</div>
+          </div>
+          <div class="sim-opt" onclick="simSelect(3,'invertir')">
+            <div class="sim-opt-ico"><span class="ni"><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></span></div>
+            <div class="sim-opt-label">Buscar inversión</div>
+          </div>
+          <div class="sim-opt" onclick="simSelect(3,'simple')">
+            <div class="sim-opt-ico"><span class="ni"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span></div>
+            <div class="sim-opt-label">Simplicidad fiscal</div>
+          </div>
+        </div>
+      </div>
+      <!-- RESULTADO -->
+      <div class="sim-step" id="sresult">
+        <div class="sim-result" id="simResultContent"></div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="section-gold-divider"></div>
+
+<!-- PROCESO -->
+<section id="proceso">
+  <div class="si">
+    <div class="pro-header rv">
+      <p class="sec-label" style="justify-content:center">Cómo Trabajamos</p>
+      <h2 class="sec-title" style="text-align:center">Tu empresa en <em>5 pasos</em></h2>
+      <div class="gold-line" style="margin:1.2rem auto"></div>
+    </div>
+    <div class="pro-track">
+      <div class="pro-step rv" style="transition-delay:.05s">
+        <div class="pro-num">01</div><div class="pro-ico"><span class="ni ni-sm"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></span></div>
+        <h3 class="pro-title">Contacto</h3>
+        <p class="pro-desc">Nos escribes por WhatsApp o visitas una de nuestras oficinas.</p>
+      </div>
+      <div class="pro-step rv" style="transition-delay:.12s">
+        <div class="pro-num">02</div><div class="pro-ico"><span class="ni ni-sm"><svg viewBox="0 0 24 24"><path d="M9 2a4 4 0 014 4 4 4 0 014-2 4 4 0 013 4 4 4 0 01-1 7l-1 1-3 6H9l-3-6-1-1A4 4 0 014 8a4 4 0 013-4 4 4 0 012-2z"/></svg></span></div>
+        <h3 class="pro-title">Asesoría</h3>
+        <p class="pro-desc">Analizamos tu proyecto y te recomendamos la mejor estructura.</p>
+      </div>
+      <div class="pro-step rv" style="transition-delay:.19s">
+        <div class="pro-num">03</div><div class="pro-ico"><span class="ni ni-sm"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></span></div>
+        <h3 class="pro-title">Registro</h3>
+        <p class="pro-desc">Gestionamos todos los trámites ante el estado eficientemente.</p>
+      </div>
+      <div class="pro-step rv" style="transition-delay:.26s">
+        <div class="pro-num">04</div><div class="pro-ico"><span class="ni ni-sm"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></span></div>
+        <h3 class="pro-title">Documentación</h3>
+        <p class="pro-desc">Tramitamos tu EIN y toda la documentación legal necesaria.</p>
+      </div>
+      <div class="pro-step rv" style="transition-delay:.33s">
+        <div class="pro-num">05</div><div class="pro-ico"><span class="ni ni-sm"><svg viewBox="0 0 24 24"><path d="M8 21h8m-4 0v-4m0 0a6 6 0 006-6V5H6v6a6 6 0 006 6z"/><path d="M6 5H3a2 2 0 000 4h3M18 5h3a2 2 0 010 4h-3"/></svg></span></div>
+        <h3 class="pro-title">¡Listo!</h3>
+        <p class="pro-desc">Tu empresa operativa. Soporte continuo para seguir creciendo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="section-gold-divider"></div>
+
+<!-- SUCURSALES -->
+<section id="sucursales">
+  <div class="si">
+    <div class="rv">
+      <p class="sec-label">Nuestras Oficinas</p>
+      <h2 class="sec-title">Estamos <em>cerca de ti</em></h2>
+      <div class="gold-line"></div>
+      <p class="sec-desc">Tres ubicaciones estratégicas en el noreste de Estados Unidos.</p>
+    </div>
+    <div class="suc-grid">
+      <div class="scard principal rv">
+        <span class="scard-badge sb-gold">Oficina Principal</span>
+        <h3 class="scard-name">Bethel</h3>
+        <p class="scard-state">Connecticut</p>
+        <div class="scard-info">
+          <div class="si-row"><span class="ni ni-sm"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></span><span>8 Library Pl, Bethel CT 06801</span></div>
+          <div class="si-row"><span class="ni ni-sm"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.68A2 2 0 012 1h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg></span><a href="tel:2037703876">(203) 770-3876</a></div>
+          <div class="si-row"><span class="ni ni-sm"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22 6 12 13 2 6"/></svg></span><a href="mailto:bahiatravel2787@hotmail.com">bahiatravel2787@hotmail.com</a></div>
+          <div class="si-row"><span class="ni ni-sm"><svg viewBox="0 0 24 24"><path d="M3 21l1.65-3.8a9 9 0 111.79 1.9L3 21"/><path d="M9 10c0 .55.45 1 1 1h4a1 1 0 001-1V9a1 1 0 00-1-1h-1V7a1 1 0 00-2 0v1H10a1 1 0 00-1 1v1z"/></svg></span><a href="https://wa.link/qsej2p" target="_blank">WhatsApp disponible</a></div>
+        </div>
+      </div>
+      <div class="scard rv" style="transition-delay:.1s">
+        <span class="scard-badge sb-lila">Sucursal</span>
+        <h3 class="scard-name">White Plains</h3>
+        <p class="scard-state">New York</p>
+        <div class="scard-info">
+          <div class="si-row"><span class="ni ni-sm"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></span><span>White Plains, NY</span></div>
+          <div class="si-row"><span class="ni ni-sm"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><span>Atención presencial disponible</span></div>
+          <div class="si-row"><span class="ni ni-sm"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.68A2 2 0 012 1h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg></span><a href="tel:2033000235">(203) 300-0235</a></div>
+        </div>
+      </div>
+      <div class="scard rv" style="transition-delay:.2s">
+        <span class="scard-badge sb-lila">Sucursal</span>
+        <h3 class="scard-name">Massachusetts</h3>
+        <p class="scard-state">Massachusetts</p>
+        <div class="scard-info">
+          <div class="si-row"><span class="ni ni-sm"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></span><span>Massachusetts, MA</span></div>
+          <div class="si-row"><span class="ni ni-sm"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><span>Atención presencial disponible</span></div>
+          <div class="si-row"><span class="ni ni-sm"><svg viewBox="0 0 24 24"><path d="M3 21l1.65-3.8a9 9 0 111.79 1.9L3 21"/><path d="M9 10c0 .55.45 1 1 1h4a1 1 0 001-1V9a1 1 0 00-1-1h-1V7a1 1 0 00-2 0v1H10a1 1 0 00-1 1v1z"/></svg></span><a href="https://wa.link/qsej2p" target="_blank">Consultar horarios</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="section-gold-divider"></div>
+
+<!-- TESTIMONIOS -->
+<section id="testi">
+  <div class="si">
+    <div class="testi-header rv">
+      <p class="sec-label" style="justify-content:center">Testimonios</p>
+      <h2 class="sec-title" style="text-align:center">Lo que dicen <em>nuestros clientes</em></h2>
+      <div class="gold-line" style="margin:1.2rem auto"></div>
+    </div>
+    <div class="testi-grid">
+      <div class="tc rv"><div class="tc-qm">"</div>
+        <div class="tc-stars">★★★★★</div>
+        <p class="tc-text">El proceso fue increíblemente rápido. En días tenía mi LLC lista para operar. El equipo me guió en cada paso con total profesionalismo.</p>
+        <div class="tc-author"><div class="tc-av">MR</div><div><div class="tc-name">María R.</div><div class="tc-biz">Cleaning Services · CT</div></div></div>
+      </div>
+      <div class="tc rv" style="transition-delay:.1s"><div class="tc-qm">"</div>
+        <div class="tc-stars">★★★★★</div>
+        <p class="tc-text">Llevaba meses queriendo registrar mi compañía de trucking. Bahia lo hizo fácil, profesional y sin sorpresas. Los recomiendo 100%.</p>
+        <div class="tc-author"><div class="tc-av">JL</div><div><div class="tc-name">José L.</div><div class="tc-biz">Trucking · NY</div></div></div>
+      </div>
+      <div class="tc rv" style="transition-delay:.2s"><div class="tc-qm">"</div>
+        <div class="tc-stars">★★★★★</div>
+        <p class="tc-text">Excelente servicio de taxes. Maximizaron mis deducciones y todo fue transparente. Ya los recomendé a toda mi familia y amigos.</p>
+        <div class="tc-author"><div class="tc-av">AP</div><div><div class="tc-name">Ana P.</div><div class="tc-biz">Real Estate · MA</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section id="ctafinal">
+  <div class="cta-glow"></div>
+  <div class="si" style="padding-top:8rem;padding-bottom:8rem">
+    <div class="ctacontent rv">
+      <p class="cta-ey">¿Listo para empezar?</p>
+      <h2 class="cta-title">TU EMPRESA TE<br><em>ESTÁ ESPERANDO</em></h2>
+      <p class="cta-sub">Contáctanos hoy y da el primer paso. Asesoría gratuita, sin compromisos y con total transparencia en cada paso del proceso.</p>
+      <div class="cta-btns">
+        <a href="https://wa.link/qsej2p" target="_blank" class="btn-magic-wa"><span class="bm-inner"><span class="ni" style="width:20px;height:20px"><svg viewBox="0 0 24 24" style="width:16px;height:16px"><path d="M3 21l1.65-3.8a9 9 0 111.79 1.9L3 21"/><path d="M9 10a1 1 0 001 1h4a1 1 0 001-1V9a1 1 0 00-1-1h-1V7a1 1 0 00-2 0v1H10a1 1 0 00-1 1v1z"/></svg></span> WHATSAPP</span></a>
+        <button onclick="openModal()" class="btn-magic-gold"><span class="bm-inner"><span class="ni" style="width:20px;height:20px"><svg viewBox="0 0 24 24" style="width:16px;height:16px"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></span> SOLICITAR ASESORÍA</span></button>
+      </div>
+      <div class="trust">
+        <div class="tb"><div class="tb-ic"><span class="ni ni-sm"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span></div>Registro legal garantizado</div>
+        <div class="tb"><div class="tb-ic"><span class="ni ni-sm"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span></div>Asesoría personalizada</div>
+        <div class="tb"><div class="tb-ic"><span class="ni ni-sm"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span></div>Todos los estados USA</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- CONTACT SECTION -->
+<section id="contacto" style="background:linear-gradient(180deg,#0A0418,#060210)">
+  <div class="si">
+    <div class="rv" style="text-align:center;margin-bottom:3rem">
+      <p class="sec-label" style="justify-content:center">Contacto Directo</p>
+      <h2 class="sec-title" style="text-align:center">Hablemos de <em>tu proyecto</em></h2>
+      <div class="gold-line" style="margin:1.2rem auto"></div>
+    </div>
+    <div style="max-width:700px;margin:0 auto">
+      <div class="form-wrap rv">
+        <h3 class="form-title">Envíanos tu consulta</h3>
+        <p class="form-sub">Recibimos tu mensaje en <strong style="color:var(--gold)">bahiatravel2787@hotmail.com</strong> y te respondemos en menos de 24 horas.</p>
+        <form class="bahia-form" action="https://formspree.io/f/FORM_ID_AQUI" method="POST">
+          <input type="hidden" name="_subject" value="Consulta General — Bahia Solutions">
+          <div class="form-grid">
+            <div class="fg"><label>Nombre completo</label><input type="text" name="nombre" placeholder="Tu nombre" required></div>
+            <div class="fg"><label>Email</label><input type="email" name="email" placeholder="tu@email.com" required></div>
+            <div class="fg"><label>WhatsApp</label><input type="tel" name="whatsapp" placeholder="+1 (203) 000-0000"></div>
+            <div class="fg"><label>Servicio de interés</label>
+              <select name="servicio">
+                <option value="">Selecciona...</option>
+                <option>Crear LLC</option><option>Crear Corporation</option><option>EIN / Tax ID</option>
+                <option>Taxes</option><option>Bookkeeping</option><option>Notary Public</option>
+                <option>Traducciones</option><option>Otro</option>
+              </select>
+            </div>
+            <div class="fg form-full"><label>Tu mensaje</label><textarea name="mensaje" placeholder="Cuéntanos sobre tu proyecto o consulta..."></textarea></div>
+          </div>
+          <button type="submit" class="btn-form">ENVIAR MI CONSULTA →</button>
+        </form>
+        <div class="form-success"><h4>¡Mensaje enviado con éxito! 🎉</h4><p>Gracias por contactarnos. Te responderemos a la brevedad en bahiatravel2787@hotmail.com</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-inner">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <div class="foot-logo">
+          <div class="fl-ic">BS</div>
+          <div class="fl-txt"><strong>BAHIA</strong><small>SOLUTIONS CENTER</small></div>
+        </div>
+        <p>Mismo compromiso, nuevas soluciones. Tu aliado estratégico para la creación y gestión de empresas en Estados Unidos. Antes: Bahía Travel and Business Services.</p>
+        <div class="foot-social">
+          <a href="https://www.facebook.com/BahiaTravelandbusiness/" target="_blank" class="sb" aria-label="Facebook"><span class="ni ni-sm"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></span></a>
+          <a href="https://wa.link/qsej2p" target="_blank" class="sb" aria-label="WhatsApp"><span class="ni ni-sm"><svg viewBox="0 0 24 24"><path d="M3 21l1.65-3.8a9 9 0 111.79 1.9L3 21"/><path d="M9 10c0 .55.45 1 1 1h4a1 1 0 001-1V9a1 1 0 00-1-1h-1V7a1 1 0 00-2 0v1H10a1 1 0 00-1 1v1z"/></svg></span></a>
+        </div>
+      </div>
+      <div class="foot-col">
+        <h4>Servicios</h4>
+        <ul class="flinks">
+          <li><a href="#servicios">→ LLC</a></li>
+          <li><a href="#servicios">→ Corporation</a></li>
+          <li><a href="#servicios">→ EIN / Tax ID</a></li>
+          <li><a href="#adicionales">→ Taxes</a></li>
+          <li><a href="#adicionales">→ Bookkeeping</a></li>
+          <li><a href="#adicionales">→ Notary Public</a></li>
+          <li><a href="#adicionales">→ Traducciones</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Navegación</h4>
+        <ul class="flinks">
+          <li><a href="#hero">→ Inicio</a></li>
+          <li><a href="#servicios">→ Servicios</a></li>
+          <li><a href="#porque">→ Nosotros</a></li>
+          <li><a href="#proceso">→ Proceso</a></li>
+          <li><a href="#sucursales">→ Oficinas</a></li>
+          <li><a href="#testi">→ Testimonios</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Contacto</h4>
+        <div class="fc-item"><span class="fc-ico"><span class="ni ni-sm"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></span></span><div class="fc-txt">8 Library Pl,<br>Bethel CT 06801</div></div>
+        <div class="fc-item"><span class="fc-ico"><span class="ni ni-sm"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.68A2 2 0 012 1h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg></span></span><div class="fc-txt"><a href="tel:2037703876">(203) 770-3876</a></div></div>
+        <div class="fc-item"><span class="fc-ico"><span class="ni ni-sm"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22 6 12 13 2 6"/></svg></span></span><div class="fc-txt"><a href="mailto:bahiatravel2787@hotmail.com">bahiatravel2787@hotmail.com</a></div></div>
+        <div class="fc-item"><span class="fc-ico"><span class="ni ni-sm"><svg viewBox="0 0 24 24"><path d="M3 21l1.65-3.8a9 9 0 111.79 1.9L3 21"/><path d="M9 10c0 .55.45 1 1 1h4a1 1 0 001-1V9a1 1 0 00-1-1h-1V7a1 1 0 00-2 0v1H10a1 1 0 00-1 1v1z"/></svg></span></span><div class="fc-txt"><a href="https://wa.link/qsej2p" target="_blank">WhatsApp directo</a></div></div>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <p class="foot-copy">© 2026 <span>Bahia Solutions Center</span>. Todos los derechos reservados.</p>
+      <p class="foot-slog">Mismo compromiso · Nuevas soluciones</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+// SCROLL PROGRESS
+window.addEventListener('scroll',()=>{
+  const p=document.getElementById('prog');
+  const t=document.documentElement.scrollHeight-window.innerHeight;
+  p.style.width=(window.scrollY/t*100)+'%';
+});
+
+// NAV STUCK
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('stuck',window.scrollY>60));
+
+// REVEAL
+const ro=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');ro.unobserve(e.target)}});
+},{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.rv,.rv-l,.rv-r').forEach(el=>ro.observe(el));
+
+// MOBILE MENU
+function oMM(){document.getElementById('mmenu').classList.add('open');document.body.style.overflow='hidden'}
+function cMM(){document.getElementById('mmenu').classList.remove('open');document.body.style.overflow=''}
+
+// SMOOTH SCROLL
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const t=document.querySelector(a.getAttribute('href'));
+    if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'})}
+  });
+});
+
+// 3D TILT CARD
+const card=document.getElementById('tiltCard');
+if(card){
+  card.addEventListener('mousemove',e=>{
+    const r=card.getBoundingClientRect();
+    const x=(e.clientX-r.left)/r.width-.5;
+    const y=(e.clientY-r.top)/r.height-.5;
+    card.style.transform=`rotateY(${x*18}deg) rotateX(${-y*12}deg)`;
+  });
+  card.addEventListener('mouseleave',()=>{
+    card.style.transform='rotateY(-8deg) rotateX(5deg)';
+  });
+}
+
+// SERVICE CARDS MOUSE GLOW
+document.querySelectorAll('.sc').forEach(c=>{
+  c.addEventListener('mousemove',e=>{
+    const r=c.getBoundingClientRect();
+    const x=((e.clientX-r.left)/r.width*100)+'%';
+    const y=((e.clientY-r.top)/r.height*100)+'%';
+    c.style.setProperty('--mx',x);
+    c.style.setProperty('--my',y);
+  });
+});
+
+// PARTICLE CANVAS
+(function(){
+  const canvas=document.getElementById('particles');
+  if(!canvas)return;
+  const ctx=canvas.getContext('2d');
+  let W,H,pts=[];
+  function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight}
+  resize();window.addEventListener('resize',resize);
+  for(let i=0;i<55;i++){
+    pts.push({
+      x:Math.random()*2000,y:Math.random()*900,
+      vx:(Math.random()-.5)*.25,vy:(Math.random()-.5)*.25,
+      r:Math.random()*2+.5,
+      a:Math.random()*.7+.1
+    });
+  }
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    pts.forEach(p=>{
+      p.x+=p.vx;p.y+=p.vy;
+      if(p.x<0)p.x=W;if(p.x>W)p.x=0;
+      if(p.y<0)p.y=H;if(p.y>H)p.y=0;
+      ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle=`rgba(200,168,233,${p.a})`;ctx.fill();
+    });
+    // connect nearby
+    for(let i=0;i<pts.length;i++){
+      for(let j=i+1;j<pts.length;j++){
+        const dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y;
+        const d=Math.sqrt(dx*dx+dy*dy);
+        if(d<120){
+          ctx.beginPath();
+          ctx.moveTo(pts[i].x,pts[i].y);ctx.lineTo(pts[j].x,pts[j].y);
+          ctx.strokeStyle=`rgba(200,168,233,${.15*(1-d/120)})`;
+          ctx.lineWidth=.5;ctx.stroke();
+        }
+      }
+    }
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+// PARALLAX ON SCROLL
+window.addEventListener('scroll',()=>{
+  const sy=window.scrollY;
+  document.querySelectorAll('.orb1').forEach(o=>o.style.transform=`translateY(${sy*.15}px)`);
+  document.querySelectorAll('.orb2').forEach(o=>o.style.transform=`translateY(${-sy*.1}px)`);
+});
+
+// COUNTER ANIMATION for stats
+function animateCounters(){
+  document.querySelectorAll('.stat-n,.pqs-n').forEach(el=>{
+    const txt=el.textContent;
+    const num=parseFloat(txt);
+    if(isNaN(num))return;
+    const suffix=txt.replace(/[\d.]/g,'');
+    let start=0;const dur=1500;const step=16;
+    const inc=num/(dur/step);
+    const iv=setInterval(()=>{
+      start+=inc;
+      if(start>=num){start=num;clearInterval(iv)}
+      el.textContent=Math.round(start)+suffix;
+    },step);
+  });
+}
+const statObs=new IntersectionObserver(en=>{
+  en.forEach(e=>{if(e.isIntersecting){animateCounters();statObs.disconnect()}});
+},{threshold:.3});
+const statEl=document.querySelector('.stats');
+if(statEl)statObs.observe(statEl);
+</script>
+
+<script>
+
+
+// ── MODAL ──
+function openModal(service){
+  document.getElementById('modal-overlay').classList.add('open');
+  document.body.style.overflow='hidden';
+  if(service){
+    const sel = document.getElementById('modal-servicio');
+    if(sel) sel.value = service;
+  }
+}
+function closeModal(){
+  document.getElementById('modal-overlay').classList.remove('open');
+  document.body.style.overflow='';
+}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
+
+// ── LOADER ──
+(function(){
+  const name = 'BAHIA';
+  let i = 0;
+  const el = document.getElementById('loaderName');
+  const bar = document.getElementById('loaderBar');
+  const loader = document.getElementById('loader');
+
+  // Particle canvas
+  const c = document.getElementById('loader-particles');
+  const ctx = c.getContext('2d');
+  c.width = window.innerWidth; c.height = window.innerHeight;
+  const pts = Array.from({length:60},()=>({
+    x:Math.random()*c.width, y:Math.random()*c.height,
+    vx:(Math.random()-.5)*.4, vy:(Math.random()-.5)*.4,
+    r:Math.random()*2+.5, a:Math.random()*.5+.1
+  }));
+  function drawLP(){
+    ctx.clearRect(0,0,c.width,c.height);
+    pts.forEach(p=>{
+      p.x+=p.vx; p.y+=p.vy;
+      if(p.x<0)p.x=c.width; if(p.x>c.width)p.x=0;
+      if(p.y<0)p.y=c.height; if(p.y>c.height)p.y=0;
+      ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle=`rgba(212,175,55,${p.a})`; ctx.fill();
+    });
+    for(let a=0;a<pts.length;a++) for(let b=a+1;b<pts.length;b++){
+      const dx=pts[a].x-pts[b].x, dy=pts[a].y-pts[b].y;
+      const d=Math.sqrt(dx*dx+dy*dy);
+      if(d<130){
+        ctx.beginPath(); ctx.moveTo(pts[a].x,pts[a].y); ctx.lineTo(pts[b].x,pts[b].y);
+        ctx.strokeStyle=`rgba(212,175,55,${.12*(1-d/130)})`; ctx.lineWidth=.5; ctx.stroke();
+      }
+    }
+    if(!loader.classList.contains('hide')) requestAnimationFrame(drawLP);
+  }
+  drawLP();
+
+  // Type name
+  function typeName(){
+    if(i<=name.length){
+      el.textContent = name.substring(0,i);
+      i++;
+      setTimeout(typeName, 120);
+    }
+  }
+  typeName();
+
+  // Progress bar
+  let prog = 0;
+  const barInterval = setInterval(()=>{
+    prog += Math.random()*4+1;
+    if(prog>=100){ prog=100; clearInterval(barInterval); }
+    bar.style.width = prog+'%';
+  },40);
+
+  // Hide after 2.8s
+  setTimeout(()=>{
+    loader.classList.add('curtain-up');
+    setTimeout(()=>{
+      loader.classList.add('hide');
+      document.body.classList.add('loaded');
+    },900);
+  },2800);
+})();
+
+
+// ── CURSOR GLOW ──
+(function(){
+  const glow = document.getElementById('cursor-glow');
+  if(!glow) return;
+  let gx=0,gy=0,tx=0,ty=0;
+  document.addEventListener('mousemove',e=>{tx=e.clientX;ty=e.clientY});
+  function anim(){
+    gx+=(tx-gx)*.1; gy+=(ty-gy)*.1;
+    glow.style.left=gx+'px'; glow.style.top=gy+'px';
+    requestAnimationFrame(anim);
+  }
+  anim();
+})();
+
+
+// ── SIMULADOR ──
+const simData = {i:'',s:'',p:''};
+function simSelect(step, val){
+  const key = step===1?'i':step===2?'s':'p';
+  simData[key]=val;
+  // mark selected
+  document.querySelectorAll('#s'+step+' .sim-opt').forEach(o=>o.classList.remove('selected'));
+  event.currentTarget.classList.add('selected');
+  setTimeout(()=>{
+    document.getElementById('s'+step).classList.remove('active');
+    if(step<3){
+      document.getElementById('s'+(step+1)).classList.add('active');
+      document.getElementById('pd'+step).classList.remove('active');
+      document.getElementById('pd'+step).classList.add('done');
+      document.getElementById('pd'+(step+1)).classList.add('active');
+    } else {
+      document.getElementById('pd3').classList.remove('active');
+      document.getElementById('pd3').classList.add('done');
+      showSimResult();
+    }
+  },350);
+}
+function showSimResult(){
+  const isLLC = simData.p!=='invertir' && simData.s!=='varios';
+  const type = isLLC ? 'LLC' : 'CORPORATION';
+  const typeColor = isLLC ? 'var(--lila)' : 'var(--gold)';
+  const desc = isLLC
+    ? 'La LLC es la estructura perfecta para ti. Te protege legalmente, es flexible en impuestos y fácil de gestionar. Ideal para emprendedores como tú.'
+    : 'Una Corporation es lo que necesitas. Te permite escalar, buscar inversionistas y emitir acciones. La estructura seria para crecer en grande.';
+  const points = isLLC
+    ? ['Protección de patrimonio personal','Flexibilidad fiscal total','Gestión sencilla y ágil','Ideal para tu industria']
+    : ['Estructura para inversionistas','Emisión de acciones posible','Separación jurídica total','Proyección de crecimiento'];
+  const waMsg = encodeURIComponent(`Hola Bahia Solutions! 👋 Usé el simulador en su web y me recomendó una ${type}. Me gustaría una asesoría personalizada. ¿Pueden ayudarme?`);
+  const html = `
+    <div class="sim-result-badge">Tu resultado</div>
+    <div class="sim-result-type">La <em>${type}</em><br>es para ti</div>
+    <p class="sim-result-desc">${desc}</p>
+    <div class="sim-result-points">
+      ${points.map(p=>`<div class="sim-rp"><span class="ni"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>${p}</div>`).join('')}
+    </div>
+    <a href="https://wa.me/12037703876?text=${waMsg}" target="_blank" class="btn-g" style="display:inline-flex;margin:0 auto">
+      💬 Hablar con un asesor ahora
+    </a>
+    <br>
+    <button class="sim-restart" onclick="simRestart()">↺ Volver a simular</button>
+  `;
+  document.getElementById('simResultContent').innerHTML=html;
+  document.getElementById('sresult').classList.add('active');
+}
+function simRestart(){
+  simData.i=''; simData.s=''; simData.p='';
+  ['s2','s3','sresult'].forEach(id=>document.getElementById(id).classList.remove('active'));
+  document.getElementById('s1').classList.add('active');
+  ['pd1','pd2','pd3'].forEach(id=>{
+    document.getElementById(id).classList.remove('done','active');
+  });
+  document.getElementById('pd1').classList.add('active');
+  document.querySelectorAll('.sim-opt').forEach(o=>o.classList.remove('selected'));
+}
+
+
+// ── FORMS ──
+document.querySelectorAll('.bahia-form').forEach(form=>{
+  form.addEventListener('submit', async function(e){
+    e.preventDefault();
+    const btn = this.querySelector('.btn-form');
+    const orig = btn.textContent;
+    btn.textContent = 'ENVIANDO...';
+    btn.disabled = true;
+    const data = new FormData(this);
+    try{
+      const res = await fetch('https://formspree.io/f/FORM_ID_AQUI',{
+        method:'POST', body:data,
+        headers:{'Accept':'application/json'}
+      });
+      if(res.ok){
+        this.style.display='none';
+        const suc = this.nextElementSibling;
+        if(suc) suc.classList.add('show');
+      } else {
+        btn.textContent='ERROR — INTENTA DE NUEVO';
+        btn.disabled=false;
+      }
+    } catch(err){
+      btn.textContent='ERROR — INTENTA DE NUEVO';
+      btn.disabled=false;
+    }
+  });
+});
+
+</script>
+
+</body>
+</html>
