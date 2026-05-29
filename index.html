@@ -1494,6 +1494,121 @@ body:not(.loaded){overflow:hidden}
   pointer-events: none;
 }
 
+
+/* ─── NAV ELEGANT ─── */
+.nav-links li a {
+  font-size: .62rem !important;
+  letter-spacing: 1.5px !important;
+}
+.nav-wa {
+  background: linear-gradient(135deg, var(--gold-dark), var(--gold)) !important;
+  color: #060210 !important;
+  padding: .5rem 1.3rem !important;
+  border-radius: 4px !important;
+  font-weight: 900 !important;
+}
+.nav-wa:after { display: none !important; }
+.nav-wa:hover { box-shadow: 0 4px 20px rgba(212,175,55,.5) !important; transform: translateY(-1px) !important; }
+
+
+/* ─── NAV ELEGANT ─── */
+.nav-links li a {
+  font-size: .65rem !important;
+  letter-spacing: 2px !important;
+  color: rgba(255,255,255,.65) !important;
+}
+.nav-links li a:hover { color: var(--gold) !important; }
+.nav-cta-btn {
+  background: linear-gradient(135deg, var(--gold-dark), var(--gold)) !important;
+  color: #060210 !important;
+  padding: .55rem 1.4rem !important;
+  border-radius: 4px !important;
+  font-weight: 900 !important;
+  letter-spacing: 1.5px !important;
+}
+.nav-cta-btn:hover {
+  box-shadow: 0 4px 20px rgba(212,175,55,.5) !important;
+  transform: translateY(-1px) !important;
+  color: #060210 !important;
+}
+.nav-cta-btn::after { display: none !important; }
+
+
+/* ─── SECTION CTA FIX ─── */
+.section-cta-bar {
+  margin-top: 0 !important;
+  padding-top: 1.5rem !important;
+  padding-bottom: 1.5rem !important;
+  border-top: 1px solid rgba(212,175,55,.12) !important;
+  border-bottom: 1px solid rgba(212,175,55,.12) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 1.2rem !important;
+  flex-wrap: wrap !important;
+  background: rgba(212,175,55,.03) !important;
+}
+#servicios .si,
+#adicionales .si {
+  padding-bottom: 0 !important;
+}
+#servicios .serv-grid,
+#adicionales .ad-grid {
+  margin-bottom: 0 !important;
+}
+
+
+/* ─── SPACING REDUCTION ─── */
+.si {
+  padding-top: 4rem !important;
+  padding-bottom: 4rem !important;
+}
+#hero {
+  padding-top: 6rem !important;
+  padding-bottom: 3rem !important;
+}
+#ctafinal .si {
+  padding-top: 5rem !important;
+  padding-bottom: 5rem !important;
+}
+#proceso .si {
+  padding-top: 4rem !important;
+  padding-bottom: 4rem !important;
+}
+#sucursales .si {
+  padding-top: 4rem !important;
+  padding-bottom: 4rem !important;
+}
+#testimonios .si {
+  padding-top: 4rem !important;
+  padding-bottom: 4rem !important;
+}
+#porque .si {
+  padding-top: 4rem !important;
+  padding-bottom: 4rem !important;
+}
+#simulador .si {
+  padding-top: 4rem !important;
+  padding-bottom: 4rem !important;
+}
+#ideal .si {
+  padding-top: 2.5rem !important;
+  padding-bottom: 2.5rem !important;
+}
+#contacto .si {
+  padding-top: 4rem !important;
+  padding-bottom: 4rem !important;
+}
+.testi-header,
+.sim-header,
+.pro-header,
+.ad-header {
+  margin-bottom: 2.5rem !important;
+}
+.serv-header {
+  margin-bottom: 2rem !important;
+}
+
 </style>
 </head>
 <body>
@@ -1609,10 +1724,9 @@ body:not(.loaded){overflow:hidden}
 <div class="mmenu" id="mmenu">
   <button class="mm-close" onclick="cMM()">✕</button>
   <a href="#servicios" onclick="cMM()">Servicios</a>
-  <a href="#porque" onclick="cMM()">Nosotros</a>
-  <a href="#proceso" onclick="cMM()">Proceso</a>
-  <a href="#sucursales" onclick="cMM()">Oficinas</a>
+  <a href="#adicionales" onclick="cMM()">Complementarios</a>
   <a href="#simulador" onclick="cMM()">Simulador</a>
+  <a href="#sucursales" onclick="cMM()">Oficinas</a>
   <a href="#contacto" onclick="cMM()">Contacto</a>
   <a href="https://wa.link/qsej2p" target="_blank" style="color:var(--gold)!important">WhatsApp</a>
 </div>
@@ -1625,10 +1739,10 @@ body:not(.loaded){overflow:hidden}
   </a>
   <ul class="nav-links">
     <li><a href="#servicios">Servicios</a></li>
-    <li><a href="#adicionales">Serv. Complementarios</a></li><li><a href="#porque">Nosotros</a></li>
-    <li><a href="#proceso">Proceso</a></li>
+    <li><a href="#adicionales">Complementarios</a></li>
+    <li><a href="#simulador">Simulador</a></li>
     <li><a href="#sucursales">Oficinas</a></li>
-    <li><a href="#simulador">Simulador</a></li><li><a href="#contacto">Contacto</a></li><li><a href="https://wa.link/qsej2p" target="_blank" class="nav-wa">WhatsApp</a></li>
+    <li><a href="#contacto" class="nav-cta-btn">Contacto</a></li>
   </ul>
   <button class="hmbg" onclick="oMM()" aria-label="Menú">
     <span></span><span></span><span></span>
@@ -1656,7 +1770,7 @@ body:not(.loaded){overflow:hidden}
         <button onclick="openModal()" class="btn-magic-gold btn-hero-full">
           <span class="bm-inner"><span class="ni" style="width:20px;height:20px"><svg viewBox="0 0 24 24" style="width:16px;height:16px"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></span> SOLICITA UNA REUNIÓN CON UN ASESOR</span>
         </button>
-        <a href="https://wa.link/qsej2p" target="_blank" class="btn-magic-gold btn-hero-full btn-wa-gold">
+        <a href="https://wa.me/12037703876?text=%F0%9F%8F%A2%20%C2%A1Hola%20Bahia%20Solutions%21%20Estoy%20interesado%20en%20crear%20mi%20empresa%20en%20USA.%20%C2%BFMe%20pueden%20orientar%20sobre%20los%20servicios%20disponibles%3F%20%F0%9F%98%8A%F0%9F%9A%80" target="_blank" class="btn-magic-gold btn-hero-full btn-wa-gold">
           <span class="bm-inner"><span class="ni" style="width:20px;height:20px"><svg viewBox="0 0 24 24" style="width:16px;height:16px"><path d="M3 21l1.65-3.8a9 9 0 111.79 1.9L3 21"/><path d="M9 10a1 1 0 001 1h4a1 1 0 001-1V9a1 1 0 00-1-1h-1V7a1 1 0 00-2 0v1H10a1 1 0 00-1 1v1z"/></svg></span> WHATSAPP</span>
         </a>
       </div>
