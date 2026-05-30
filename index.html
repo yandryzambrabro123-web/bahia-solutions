@@ -1837,7 +1837,7 @@ img[src*="asesora"] {
   <canvas id="loader-particles"></canvas>
   <div class="loader-content">
     <div class="loader-logo-wrap">
-      <img src="images/isotipo.png" style="height:80px;width:auto;border-radius:16px">
+      <div class="loader-badge" id="loaderBadge">BS</div>
       <div class="loader-rings">
         <div class="ring r1"></div>
         <div class="ring r2"></div>
@@ -1847,6 +1847,10 @@ img[src*="asesora"] {
     <div class="loader-brand">
       
       
+    </div>
+    <div class="loader-brand">
+      <span class="loader-name" id="loaderName"></span>
+      <span class="loader-sub">SOLUTIONS CENTER</span>
     </div>
     <div class="loader-bar-wrap">
       <div class="loader-bar" id="loaderBar"></div>
@@ -2674,7 +2678,7 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
 (function(){
   const name = 'BAHIA';
   let i = 0;
-  const el = null && document.getElementById('loaderNameX');
+  const el = document.getElementById('loaderName');
   const bar = document.getElementById('loaderBar');
   const loader = document.getElementById('loader');
 
